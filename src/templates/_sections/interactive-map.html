@@ -1,0 +1,93 @@
+<div id="lines">
+  <h2>Choose a bus route.</h2>
+  <button id="route-6">6</button>
+  <button id="route-7">7</button>
+  <button id="route-12">12</button>
+  <button id="route-18">18</button>
+  <button id="route-36">36</button>
+  <button id="route-51B" class="selected">51B</button>
+  <button id="route-52">52</button>
+  <button id="route-65">65</button>
+  <button id="route-67">67</button>
+  <button id="route-79">79</button>
+  <button id="route-88">88</button>
+  <button id="route-F">F</button>
+</div>
+<div id="dirs">
+  <h2>Choose a direction.</h2>
+  <div class="dir" id="dir-6">
+    <button class="dir-n">To Downtown Berkeley</button>
+    <button class="dir-s">To Downtown Oakland</button>
+  </div>
+  <div class="dir" id="dir-7">
+    <button class="dir-n">To Downtown Berkeley</button>
+    <button class="dir-s">To El Cerrito Del Norte BART</button>
+  </div>
+  <div class="dir" id="dir-12">
+    <button class="dir-n">Oakland Amtrak</button>
+    <button class="dir-s">Westbrae - Berkeley</button>
+  </div>
+  <div class="dir" id="dir-18">
+    <button class="dir-n">Lake Merritt BART</button>
+    <button class="dir-s">Albany</button>
+  </div>
+  <div class="dir" id="dir-36">
+    <button class="dir-n">UC Campus</button>
+    <button class="dir-s">West Oakland BART</button>
+  </div>
+  <div class="dir" id="dir-51B">
+    <button class="dir-n">Berkeley Amtrak</button>
+    <button class="dir-s">Rockridge BART</button>
+  </div>
+  <div class="dir" id="dir-52">
+    <button class="dir-n">U.c. Campus</button>
+    <button class="dir-s">U.c. Village</button>
+  </div>
+  <div class="dir" id="dir-65">
+    <button class="dir-n">To Downtown Berkeley</button>
+    <button class="dir-s">Euclid</button>
+  </div>
+  <div class="dir" id="dir-67">
+    <button class="dir-n">To Downtown Berkeley</button>
+    <button class="dir-s">Spruce</button>
+  </div>
+  <div class="dir" id="dir-79">
+    <button class="dir-n">El Cerrito Plaza BART</button>
+    <button class="dir-s">Rockridge BART</button>
+  </div>
+  <div class="dir" id="dir-88">
+    <button class="dir-n">Berkeley BART</button>
+    <button class="dir-s">Lake Merritt BART</button>
+  </div>
+  <div class="dir" id="dir-F">
+    <button class="dir-n">San Francisco</button>
+    <button class="dir-s">Berkeley</button>
+  </div>
+</div>
+
+<div id="map-info">
+  <div id="cover">
+    <p>Please choose a route and a direction to uncover the map.</p>
+  </div>
+  <div id="map" class="map"></div>
+  <div id="info">
+    <h4 id="stopId"></h4>
+    <h2 id="stopName"></h2>
+    <h2 id="route"></h2>
+    <h2 id="direction"></h2>
+    <h3 id="mean"></h3>
+    <h3 id="median"></h3>
+    <h3 id="std"></h3>
+    <h3 id="late"></h3>
+    <h3 id="vlate"></h3>
+    <p>
+      The histogram below takes the frequency of delays that are at least
+      5 minutes to approximate which times of day (between 6am and midnight) are
+      busiest for this stop or route. The y scale is normalized to the proportion
+      of delays that occured in each time slot.
+    </p>
+    <p id="hist-sum"></p>
+    <div id="hist"></div>
+    <p><em>Click the map to hide this information</em></p>
+  </div>
+</div>

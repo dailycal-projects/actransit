@@ -1,0 +1,75 @@
+@import 'bootstrap';
+
+@import 'breakpoints';
+@import 'mixins';
+@import 'colors/base';
+@import 'colors/diverging';
+@import 'colors/qualitative';
+@import 'colors/sequential';
+@import 'fonts';
+@import 'icons';
+
+@import 'elements';
+@import 'refer';
+@import 'navigation';
+@import 'header';
+@import 'footer';
+@import 'photos';
+@import 'buttons';
+@import 'ads';
+@import 'comments';
+@import 'share';
+@import 'credits';
+@import 'graphics';
+
+@import 'ol';
+
+/* Colors */
+.route-6 {
+  background-color: "#006DB8";
+  fill: "#006DB8";
+}
+.route-7 {
+  background-color: "#75C695";
+  fill: "#75C695";
+}
+.route-12 {
+  background-color: "#85D2DD";
+  fill: "#85D2DD";
+}
+.route-18 {
+  background-color: "#8D6538";
+  fill: "#8D6538";
+}
+.route-36 {
+  background-color: "#C4A2CB";
+  fill: "#C4A2CB";
+}
+.route-51B {
+  background-color: "#008B59";
+  fill: "#008B59";
+}
+.route-52 {
+  background-color: "#F598AA";
+  fill: "#F598AA";
+}
+.route-65 {
+  background-color: "#652D91";
+  fill: "#652D91";
+}
+.route-67 {
+  background-color: "#FECD08";
+  fill: "#FECD08";
+}
+.route-79 {
+  background-color: "#00B1B0";
+  fill: "#00B1B0";
+}
+.route-88 {
+  background-color: "#9A983A";
+  fill: "#";
+}
+.route-F {
+  background-color: "#F79447";
+  fill: "#F79447";
+}

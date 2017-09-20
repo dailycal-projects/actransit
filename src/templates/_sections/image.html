@@ -1,0 +1,12 @@
+<figure class="no-gutters-phone">
+	{% if env == 'production' %}
+	<img
+	  src="images/{{ section.filename }}-1800.jpg"
+	  srcset="images/{{ section.filename }}-400.jpg 400w, images/{{ section.filename }}-800.jpg 800w, images/{{ section.filename }}-1200.jpg 1200w, images/{{ section.filename }}-1800.jpg 1800w"
+	  alt="{{ alt }}"
+	/>
+	{% else %}
+	<img src="../../images/{{ section.filename }}.jpg" />
+	{% endif %}
+	<figcaption class="figcaption">{{ section.caption }} <figcredit> {{ section.credit }} </figcredit></figcaption>
+</figure>

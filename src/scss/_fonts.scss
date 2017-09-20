@@ -1,0 +1,17 @@
+$proxima: 'proxima-nova', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$tisa: 'ff-tisa-web-pro', Georgia, Times, 'Times New Roman', serif;
+$tablet: 'tablet-gothic-condensed', 'Arial Narrow', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$lato: 'Lato', sans-serif;
+
+$serif: Georgia, Times, 'Times New Roman', serif;
+$sans: $lato;
+
+.sans {
+  font-family: $sans;
+  font-weight: 500;
+}
+
+.sans-bold {
+  font-family: $sans;
+  font-weight: 700;
+}

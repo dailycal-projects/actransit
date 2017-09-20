@@ -1,0 +1,27 @@
+section.credits {
+  p {
+    border-top: 1px solid $light-gray;
+    color: $satan;
+    font-family: $proxima;
+    font-size: .9em;
+    margin-top: 3em;
+    padding-top: 1em;
+    max-width: 600px;
+    @include margin-auto;
+
+    a:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+p.correction{
+    padding: 13px 22px;
+    background-color: #efefef;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    border-radius: 4px;
+    line-height: 1.3em;
+    font-family: $proxima;
+    margin: .8em auto 2em;
+}

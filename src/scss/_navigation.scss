@@ -1,0 +1,97 @@
+#global-header {
+  @include clearfix;
+  background: $dc-purple;
+  height: 50px;
+
+  #global-header, ul {
+    @include clearfix;
+  }
+
+  .navbar-dc-logo {
+    font-family: Georgia;
+    font-variant: small-caps;
+    font-size: 1.25em;
+    //margin-top: .4em;
+    margin-left: 1em;
+  }
+
+  a {
+    color: $white;
+
+      &:hover, &:focus{
+        text-decoration: none;
+        opacity: .8;
+      }
+    }
+
+  #global-branding {
+    float: left;
+  }
+
+  .navbar-right {
+    float: right;
+    
+    margin-right: 1em;
+
+    li > a:hover {
+      background: $dc-purple;
+    }
+    li {
+      float: left;
+    }
+  }
+
+  #nav-micro {
+    float: right;
+
+    .icon.icon-pro-small-bold {
+      font-size: 1em;
+      line-height: 2.29166666666667em;
+      padding: 0 .3125em;
+    }
+
+    ul {
+      list-style: none;
+      margin-bottom: 1px;
+      padding-bottom: 0;
+
+      li{
+        float:left;
+      }
+
+      li > a {
+        background: $politico-red;
+        border-left: 1px solid $politico-dark-red;
+        display: block;
+        font-family: $tablet;
+        font-weight: 700;
+        line-height: 45px;
+        min-width: 2.5em;
+        padding: 0 .9375em;
+        position: relative;
+        text-align: center;
+      }
+    }
+  }
+}
+
+//Light Theme
+.light-theme {
+  #global-header {
+    background: $white;
+    border-bottom: 0;
+  }
+
+  #global-header a, #global-footer a  {
+    color: $politico-red;
+  }
+
+  #global-header.icon , nav .icon {
+  color: $politico-red;
+  }
+
+  .micro-list>li>a {
+  background: $white;
+  border: 0;
+  }
+}

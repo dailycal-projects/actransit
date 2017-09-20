@@ -1,0 +1,33 @@
+{%extends "base.html"%}
+
+{%block title%}
+<title>{{META.share.fbook.card_title}}</title>
+{%endblock%}
+
+{%block header%}
+
+<header class="center">
+    <p class="category">
+        <a href="{{ARCHIE.category_link}}"" target="_blank">{{ARCHIE.category}}</a>
+    </p>
+    <h1>{{ARCHIE.headline}}</h1>
+    <p class="subhead">{{ARCHIE.subhead}}</p>
+    <div class="info">
+        <p>
+            By <span class="byline"><a href="###">First Lastname</a></span> and <span class="byline"><a href="###">First Lastname</a></span> <br /> <span class="timestamp"> <time datetime="{{META.timestamp}}">{{ARCHIE.dateline | upper}}</time></span>
+        </p>
+    </div>
+</header>
+<!-- <figure class="large no-gutters-phone">
+    <img src="https:placehold.it/800x600?text=lead+art+here" alt="An awesome picture" />
+    <figcaption>Your concise caption here. <figcredit>First Last | Photo service</figcaption>
+</figure> -->
+{%endblock%}
+
+{%block content%}
+
+{% for section in ARCHIE.sections %}
+    {% include '_sections/' + section.type +'.html' %}
+{% endfor %}
+
+{%endblock%}

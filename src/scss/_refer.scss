@@ -1,0 +1,53 @@
+// Refer
+.refer{
+  margin: 2em auto;
+  padding: 15px 0;
+  border-top: 1px solid $light-gray;
+  border-bottom: 1px solid $light-gray;
+
+
+  figure{
+    margin: 0;
+    padding: 0;
+  }
+
+  a{color: #000;}
+
+  h5,h4{
+    text-align: left;
+  }
+
+  h4{
+    font-family: $tablet;
+    font-size: 1.25em;
+  }
+
+  h5{
+    margin: 0;
+    text-transform: uppercase;
+    color: $politico-red;
+    font-size: 12px;
+  }
+
+  p{
+    font-family: $proxima;
+    color: $satan;
+    font-size: 12px;
+    margin: 0;
+  }
+
+  @media (max-width: 600px){
+    .col-xs-3{
+      width: 33.33333%;
+    }
+    .col-xs-9{
+      width: 66.66667%;
+    }
+    h4{
+      font-size: .9em;
+    }
+    h5, p{
+      font-size: 10px;
+    }
+  }
+}

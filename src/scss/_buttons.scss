@@ -1,0 +1,114 @@
+.button-group .btn:last-of-type{
+  @include clearfix;
+}
+
+.btn {
+  font-family: $proxima;
+  margin: 5px 5px 0 0;
+
+}
+
+.button-group {
+  margin-top:10px;
+
+  &.small-buttons {
+    .btn{
+    padding: 7px 9px 6px;
+    font-size: 14px;
+    }
+  }
+
+  &.big-buttons{
+    .btn{
+    padding: 9px 13px;
+    font-size: 21px;
+    }
+  }
+
+  &.dark {
+      .btn {
+        border: 1px solid $satan;
+        color: $black;
+        background-color: $white;
+        box-shadow: $box-shadow-lightest;
+
+        &:hover, &:focus {
+          color: $white;
+          background-color: $satan;
+        }
+
+        &:active,
+        &.active {
+          border: 1px solid $satan;
+          box-shadow:none;
+          color: $white;
+          background-color: $satan;
+        }
+      }
+    }
+
+    &.reverse {
+        .btn {
+          border: 1px solid $medium-gray;
+          color: $white;
+          background-color: $satan;
+
+          &:hover, &:focus {
+            color: $satan;
+            background-color: $white;
+          }
+
+          &:active,
+          &.active {
+            border: 1px solid $satan;
+            box-shadow:none;
+          }
+        }
+      }
+}
+
+  .btn {
+    font-size: 17px;
+    line-height: 1em;
+    border: 1px solid $button;
+    color: $black;
+    padding: 8px 10px;
+    @include border-radius(5px);
+
+    &:hover, &:focus {
+      color: $white;
+      background-color: $button;
+    }
+
+    &:active,
+    &.active {
+      border: 1px solid $button;
+      box-shadow: none;
+    }
+  }
+
+
+.button-group.secondary {
+  .btn {
+    font-size: 14px;
+    line-height: 1em;
+    border: 2px solid $highlighter-yellow;
+    color: $black;
+    background-color: $highlighter-yellow;
+    padding: 5px 14px 3px;
+    margin: 0 4px 7px 0px;
+    @include border-radius(15px);
+    box-shadow: $box-shadow-light;
+
+    &:hover, &:focus {
+      background-color: $highlighter-orange;
+      border: 2px solid $highlighter-orange;
+    }
+
+    &:active,
+    &.active {
+      border: 2px solid $highlighter-orange;
+      background-color: $highlighter-orange;
+    }
+  }
+}

@@ -1,0 +1,27 @@
+div.share{
+text-align: center;
+margin: 20px auto;
+  a {
+    color: white;
+    background-color: $light-gray;
+    padding: 4px;
+    margin: 0 2px;
+    display: inline-block;
+    border-radius: 4px;
+    font-size: 18px;
+    transition: all .2s;
+    &.icon-facebook{
+      background-color: $facebook;
+    }
+    &.icon-twitter{
+      background-color: $twitter;
+    }
+    &.icon-mail{
+      background-color: $dark-gray;
+    }
+    cursor:pointer;
+    &:hover{
+      text-decoration: none;
+    }
+  }
+}

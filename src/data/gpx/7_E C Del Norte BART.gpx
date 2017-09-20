@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<gpx version="1.1" creator="GPS Visualizer http://www.gpsvisualizer.com/" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+<wpt lat='37.8694899' lon='-122.26765'>
+	<name>51096</name>
+	<desc><![CDATA[51096]]></desc>
+	<sym>Dot</sym>
+	<type><![CDATA[Dot]]></type>
+</wpt>
+<wpt lat='37.87019' lon='-122.26773'>
+	<name>55559</name>
+	<desc><![CDATA[55559]]></desc>
+	<sym>Dot</sym>
+	<type><![CDATA[Dot]]></type>
+</wpt>
+<wpt lat='37.8725399' lon='-122.26832'>
+	<name>57776</name>
+	<desc><![CDATA[57776]]></desc>
+	<sym>Dot</sym>
+	<type><![CDATA[Dot]]></type>
+</wpt>
+<wpt lat='37.87526' lon='-122.26863'>
+	<name>54588</name>
+	<desc><![CDATA[54588]]></desc>
+	<sym>Dot</sym>
+	<type><![CDATA[Dot]]></type>
+</wpt>
+<wpt lat='37.8765199' lon='-122.26875'>
+	<name>57225</name>
+	<desc><![CDATA[57225]]></desc>
+	<sym>Dot</sym>
+	<type><![CDATA[Dot]]></type>
+</wpt>
+<trk>
+  <name>7_E C Del Norte BART</name>
+  <desc>7_E C Del Norte BART</desc>
+  <trkseg>
+    <trkpt lat="37.86944" lon="-122.26764"></trkpt>
+    <trkpt lat="37.86942" lon="-122.26788"></trkpt>
+    <trkpt lat="37.86981" lon="-122.26783"></trkpt>
+    <trkpt lat="37.86984" lon="-122.26783"></trkpt>
+    <trkpt lat="37.87018" lon="-122.26778"></trkpt>
+    <trkpt lat="37.87019" lon="-122.26773"></trkpt>
+    <trkpt lat="37.87019" lon="-122.26773"></trkpt>
+    <trkpt lat="37.8702" lon="-122.26781"></trkpt>
+    <trkpt lat="37.87035" lon="-122.2678"></trkpt>
+    <trkpt lat="37.87055" lon="-122.26777"></trkpt>
+    <trkpt lat="37.87076" lon="-122.26775"></trkpt>
+    <trkpt lat="37.87094" lon="-122.26772"></trkpt>
+    <trkpt lat="37.87111" lon="-122.26772"></trkpt>
+    <trkpt lat="37.87124" lon="-122.26772"></trkpt>
+    <trkpt lat="37.87194" lon="-122.26781"></trkpt>
+    <trkpt lat="37.87218" lon="-122.26784"></trkpt>
+    <trkpt lat="37.87226" lon="-122.26784"></trkpt>
+    <trkpt lat="37.87219" lon="-122.26841"></trkpt>
+    <trkpt lat="37.87253" lon="-122.26844"></trkpt>
+    <trkpt lat="37.87276" lon="-122.26846"></trkpt>
+    <trkpt lat="37.87288" lon="-122.26848"></trkpt>
+    <trkpt lat="37.873" lon="-122.26841"></trkpt>
+    <trkpt lat="37.87305" lon="-122.26842"></trkpt>
+    <trkpt lat="37.87344" lon="-122.26847"></trkpt>
+    <trkpt lat="37.87388" lon="-122.26852"></trkpt>
+    <trkpt lat="37.87445" lon="-122.2686"></trkpt>
+    <trkpt lat="37.87479" lon="-122.26864"></trkpt>
+    <trkpt lat="37.875" lon="-122.26866"></trkpt>
+    <trkpt lat="37.87526" lon="-122.26869"></trkpt>
+    <trkpt lat="37.87571" lon="-122.26874"></trkpt>
+    <trkpt lat="37.87633" lon="-122.26881"></trkpt>
+    <trkpt lat="37.87651" lon="-122.26883"></trkpt>
+    <trkpt lat="37.87661" lon="-122.26885"></trkpt>
+    <trkpt lat="37.87752" lon="-122.26895"></trkpt>
+    <trkpt lat="37.87794" lon="-122.26898"></trkpt>
+    <trkpt lat="37.87834" lon="-122.26902"></trkpt>
+    <trkpt lat="37.87842" lon="-122.26902"></trkpt>
+    <trkpt lat="37.88013" lon="-122.26922"></trkpt>
+    <trkpt lat="37.88024" lon="-122.26924"></trkpt>
+    <trkpt lat="37.88069" lon="-122.26929"></trkpt>
+    <trkpt lat="37.88105" lon="-122.26935"></trkpt>
+    <trkpt lat="37.88124" lon="-122.26943"></trkpt>
+    <trkpt lat="37.88135" lon="-122.26953"></trkpt>
+    <trkpt lat="37.88148" lon="-122.26966"></trkpt>
+    <trkpt lat="37.88156" lon="-122.26975"></trkpt>
+    <trkpt lat="37.88163" lon="-122.26985"></trkpt>
+    <trkpt lat="37.88172" lon="-122.26997"></trkpt>
+    <trkpt lat="37.88183" lon="-122.27015"></trkpt>
+    <trkpt lat="37.88184" lon="-122.27015"></trkpt>
+    <trkpt lat="37.88188" lon="-122.27021"></trkpt>
+    <trkpt lat="37.88194" lon="-122.27031"></trkpt>
+    <trkpt lat="37.88203" lon="-122.27042"></trkpt>
+    <trkpt lat="37.88215" lon="-122.27055"></trkpt>
+    <trkpt lat="37.88225" lon="-122.27065"></trkpt>
+    <trkpt lat="37.88232" lon="-122.27071"></trkpt>
+    <trkpt lat="37.88241" lon="-122.27075"></trkpt>
+    <trkpt lat="37.8825" lon="-122.27079"></trkpt>
+    <trkpt lat="37.88266" lon="-122.27082"></trkpt>
+    <trkpt lat="37.88359" lon="-122.27091"></trkpt>
+    <trkpt lat="37.88359" lon="-122.27087"></trkpt>
+  </trkseg>
+</trk>
+</gpx>

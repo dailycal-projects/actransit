@@ -1,0 +1,237 @@
+.clear {
+  clear: both;
+}
+
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+article{
+  margin-bottom: 2em;
+}
+
+body {
+  color: $black;
+  font-family: $tisa;
+  position: relative;
+  margin: 0;
+  padding-bottom: 6rem;
+  min-height: 100%;
+  font-size: 17px;
+}
+
+a{
+  color: #0a7cc4;
+  &:hover, &:focus {
+    color: #0e9af3;
+  }
+}
+
+a,
+a::before,
+a::after,
+button {
+  -webkit-transition: all .25s ease;
+  transition: all .25s ease;
+}
+
+
+// Aligning text
+.center-align{
+  text-align: center;
+}
+
+.left-align{
+  text-align: left;
+}
+
+.right-align{
+  text-align: right;
+}
+
+.uppercase{
+  text-transform: uppercase;
+}
+
+.bold{
+  font-weight: 600;
+}
+
+// Fitting elements to the size of the well
+.content-fit{
+  max-width: 600px;
+  @include margin-auto;
+}
+
+.large{
+  max-width: 800px;
+  @include margin-auto;
+}
+
+.full-width{
+  width: 100%;
+  @include margin-auto;
+}
+
+
+// Paragraphs
+p {
+  font-family: $serif;
+  font-size: 1.1em;
+  line-height: 1.618em;
+  margin: 1.618em auto;
+  max-width: 600px;
+  overflow-wrap: break-word;
+
+// Using a sans font
+  &.sans{
+    font-size: 1.15em;
+    line-height: 1.45em;
+  }
+
+  @media (max-width: $width-medium) {
+    font-size: 1.15em;
+  }
+
+// The dropcap
+  span.dropcap {
+    float: left;
+    font-size: 100px;
+    line-height: 0.85em;
+    font-family: $serif;
+    margin-right: 0.115em;
+    color: $black;
+    text-transform: uppercase;
+    margin-top: 0px;
+   }
+}
+
+// Header groups
+h2,
+h3,
+h4,
+h5 {
+  font-family: $sans;
+  margin: 0 auto 8px;
+  //max-width: 100%;
+  //text-align: center;
+  max-width: 600px;
+  overflow-wrap: break-word;
+
+  + p{
+    margin-top: 0px;
+  }
+
+  &.serif{
+    font-family: $tisa;
+
+    + p{
+      margin-top: 5px;
+    }
+  }
+}
+
+h2,
+h3,
+h4,
+h5{
+  &.align-left{
+  text-align: left;
+  }
+  + p{
+    margin-top: 0px;
+  }
+}
+
+h2,
+h3,
+h4,
+h5{
+  &.align-right{
+  text-align: right;
+  }
+  + p{
+    margin-top: 0px;
+  }
+}
+
+p + h2{margin-top:2em;}
+
+
+p + h3{margin-top:2em;}
+
+section + h3{
+  margin-top: 2em;
+}
+
+// Header custom sizes
+h2, .h2 {
+  font-weight: 600;
+  font-size: 1.4em;
+
+  @media(max-width: $width-small){
+    font-size: 28px;
+  }
+}
+
+h2.serif{
+  font-size: 28px;
+  font-weight: normal;
+}
+
+h3, .h3 {
+  font-weight: 200;
+  font-size: 26px;
+
+  @media(max-width: $width-small){
+    font-size: 24px;
+  }
+}
+
+h4, .h4 {
+  font-weight: 600;
+  font-size: 19px;
+
+  @media(max-width: $width-small){
+    font-size: 17px;
+  }
+}
+
+h5, .h5 {
+  font-weight: 600;
+  font-size: 15px;
+  color: $satan;
+  margin: 0 auto 5px;
+
+  @media(max-width: $width-small){
+    font-size: 13px;
+  }
+}
+
+
+// Sections. Sections should be used to offset sections of the text, like graphics etc.
+  section {
+  margin: 0 auto;
+  padding: 2em 0 0;
+
+    p:last-of-type{
+        margin-bottom: 0;
+    }
+
+    figure + p{
+        margin-top: 10px;
+    }
+
+    h3, h4, h5 {
+      + figure {
+        margin-top: 10px;
+      }
+    }
+}

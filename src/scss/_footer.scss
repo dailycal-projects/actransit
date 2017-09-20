@@ -1,0 +1,30 @@
+// Footer
+#global-footer {
+  background-color: $dc-purple;
+  color: #fff;
+  font-weight: 200;
+  padding: 5px 10px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  .footer-text {
+    font-size: 0.8em;
+    font-family: $sans;
+    margin: 0 auto;
+
+    @media (max-width: $width-medium) {
+      font-size: 0.7em;
+    }
+  }
+
+  a {
+    color: #fff;
+    font-weight: 600;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+}
