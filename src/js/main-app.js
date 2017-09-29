@@ -521,8 +521,8 @@ function drawDelayedRoutes(dataset) {
     tickNames.push(num + ":" + desc);
   }
 
-  var width = 600;
-  var height = 450;
+  var width = 980;
+  var height = 600;
   var max = Math.ceil(dataset[0].mean / 60);
   var margin = {
     top: 25,
