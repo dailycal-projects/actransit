@@ -25,51 +25,284 @@
 @import 'ol';
 
 /* Colors */
-.route-6 {
-  background-color: "#006DB8";
-  fill: "#006DB8";
+.badge-6 {
+  background-color: #006DB8;
+  fill: #006DB8;
 }
-.route-7 {
-  background-color: "#75C695";
-  fill: "#75C695";
+.badge-7 {
+  background-color: #75C695;
+  fill: #75C695;
 }
-.route-12 {
-  background-color: "#85D2DD";
-  fill: "#85D2DD";
+.badge-12 {
+  background-color: #85D2DD;
+  fill: #85D2DD;
 }
-.route-18 {
-  background-color: "#8D6538";
-  fill: "#8D6538";
+.badge-18 {
+  background-color: #8D6538;
+  fill: #8D6538;
 }
-.route-36 {
-  background-color: "#C4A2CB";
-  fill: "#C4A2CB";
+.badge-36 {
+  background-color: #C4A2CB;
+  fill: #C4A2CB;
 }
-.route-51B {
-  background-color: "#008B59";
-  fill: "#008B59";
+.badge-51B {
+  background-color: #008B59;
+  fill: #008B59;
 }
-.route-52 {
-  background-color: "#F598AA";
-  fill: "#F598AA";
+.badge-52 {
+  background-color: #F598AA;
+  fill: #F598AA;
 }
-.route-65 {
-  background-color: "#652D91";
-  fill: "#652D91";
+.badge-65 {
+  background-color: #652D91;
+  fill: #652D91;
 }
-.route-67 {
-  background-color: "#FECD08";
-  fill: "#FECD08";
+.badge-67 {
+  background-color: #FECD08;
+  fill: #FECD08;
 }
-.route-79 {
-  background-color: "#00B1B0";
-  fill: "#00B1B0";
+.badge-79 {
+  background-color: #00B1B0;
+  fill: #00B1B0;
 }
-.route-88 {
-  background-color: "#9A983A";
-  fill: "#";
+.badge-88 {
+  background-color: #9A983A;
+  fill: #9A983A;
 }
-.route-F {
-  background-color: "#F79447";
-  fill: "#F79447";
+.badge-F {
+  background-color: #F79447;
+  fill: #F79447;
+}
+
+#lines {
+  width: 80%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 12px;
+  text-align: center;
+  position: relative;
+}
+
+#lines button {
+  border-radius: 16px;
+  border-width: 3px;
+  border-color: #333;
+  border-style: solid;
+  color: #fff;
+  padding-left: 8px;
+  padding-right: 8px;
+  margin-left: 2px;
+  margin-right: 2px;
+  font-size: 24px;
+  outline: none;
+  transition: all .25s ease-in-out;
+  -moz-transition: all .25s ease-in-out;
+  -webkit-transition: all .25s ease-in-out;
+}
+
+#lines button:hover,
+#lines button:active,
+#lines button:focus {
+  -webkit-transform:scale(1.3);
+  -moz-transform:scale(1.3);
+  -ms-transform:scale(1.3);
+  transform:scale(1.3);
+  margin-left: 8px;
+  margin-right: 8px;
+}
+
+#dirs {
+  width: 80%;
+  height: 80px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 12px;
+  text-align: center;
+  position: relative;
+  opacity: 0;
+  transition: opacity .5s ease-in-out;
+  -moz-transition: opacity .5s ease-in-out;
+  -webkit-transition: opacity .5s ease-in-out;
+}
+
+#dirs button {
+  font-size: 18px;
+  border-radius: 12px;
+  border-width: 3px;
+  border-style: solid;
+  border-color: #333;
+  margin-left: 2px;
+  margin-right: 2px;
+  outline: none;
+  background-color: #333;
+  color: lightblue;
+  transition: all .25s ease-in-out;
+  -moz-transition: all .25s ease-in-out;
+  -webkit-transition: all .25s ease-in-out;
+}
+
+#dirs button:hover,
+#dirs button:active,
+#dirs button:focus {
+  -webkit-transform:scale(1.2);
+  -moz-transform:scale(1.2);
+  -ms-transform:scale(1.2);
+  transform:scale(1.2);
+  margin-left: 24px;
+  margin-right: 24px;
+}
+
+.dir {
+  display: none;
+}
+
+#cover {
+  height: 600px;
+  left: 0;
+  right: 0;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 200px;
+  position: absolute;
+  text-align: center;
+  background-color: #fff;
+  z-index: 3;
+}
+
+#cover p {
+  padding-top: 140px;
+  font-size: 24px;
+}
+
+#instr {
+  text-align: right;
+  width: 90%;
+  margin-top: 612px;
+  margin-left: auto;
+  margin-right: auto;
+  display: none;
+}
+
+#map-info {
+  height: 600px;
+}
+
+#map {
+  height: 600px;
+  left: 0;
+  right: 0;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 200px;
+  position: absolute;
+  z-index: 0;
+  /*opacity: 0;
+  transition: opacity .5s ease-in-out;
+  -moz-transition: opacity .5s ease-in-out;
+  -webkit-transition: opacity .5s ease-in-out;*/
+}
+
+#info {
+  width: 40%;
+  height: 600px;
+  margin-right: 5%;
+  display: none;
+  position: absolute;
+  right: 0;
+  background-color: rgba(255,255,255,0.7);
+  padding: 32px;
+  z-index: 1;
+}
+
+#info h2 {
+  text-align: left;
+}
+
+#info h3 {
+  margin-top: 10px;
+  font-weight: normal;
+}
+
+#info span {
+  font-weight: bold;
+}
+
+#stopId {
+  margin-bottom: 0;
+}
+
+#stopName {
+  margin: 0 0 4px 0;
+}
+
+#route, .route {
+  border-radius: 16px;
+  border-width: 2px;
+  border-color: #333;
+  border-style: solid;
+  color: #fff;
+  padding-left: 8px;
+  padding-right: 8px;
+  margin: 0px 2px 0px 2px;
+  font-size: 18px;
+  font-weight: normal;
+  display: inline-block;
+}
+
+#direction, .direction {
+  border-radius: 16px;
+  border-width: 2px;
+  border-color: #333;
+  border-style: solid;
+  background-color: #333;
+  color: lightblue;
+  padding-left: 8px;
+  padding-right: 8px;
+  margin: 0px 2px 0px 2px;
+  font-size: 18px;
+  font-weight: normal;
+  display: inline-block;
+}
+
+#hist {
+  margin-top: 20px;
+}
+
+#additional {
+  display: none;
+  position: relative;
+  text-align: center;
+}
+
+/* D3.js styling */
+
+div.bar {
+  display: inline-block;
+  width: 20px;
+  height: 75px;   /* We'll override this later */
+  background-color: teal;
+  margin-right: 2px;
+}
+
+rect:hover {
+  opacity: 0.6;
+}
+
+.grid .tick {
+  stroke: #fff;
+  opacity: 0.7;
+}
+.grid path {
+    stroke-width: 0;
+}
+
+.big-y {
+  font-size: 16px;
+}
+
+.big-y path.domain {
+  display: none;
 }
