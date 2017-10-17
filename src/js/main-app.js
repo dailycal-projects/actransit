@@ -33,6 +33,14 @@ function toggleRoute(line) {
   for (var i = 0; i < vectorLayers.length; i++) {
     vectorLayers[i].setVisible(false);
   }
+  /* Hide other routes */
+  var routes = document.getElementsByClassName('badge');
+  for (var i = 0; i < routes.length; i++) {
+    if (line !== routes[i].id.slice(6)) {
+      routes[i].setAttribute("style", "display:none");
+    }
+  }
+  /* Show direction options */
   var dirs = document.getElementsByClassName('dir');
   for (var i = 0; i < dirs.length; i++) {
     dirs[i].setAttribute("style", "display: none");
@@ -44,6 +52,13 @@ function toggleRoute(line) {
 };
 
 function toggleDir(direction, index, proj) {
+  /* Hide the other direction */
+  var dirs = document.querySelectorAll('.dir button');
+  for (var i = 0; i < routes.length; i++) {
+    if (direction !== dirs[i].innerHTML) {
+      dirs[i].setAttribute("style", "display:none");
+    }
+  }
   for (var i = 0; i < vectorLayers.length; i++) {
     vectorLayers[i].setVisible(false);
   }
@@ -77,7 +92,7 @@ function convertTime(seconds) {
 };
 
 function getTimeSlot(index) {
-  var hour = Math.floor(index / 2) + 6;
+  var hour = Math.floor(index / 2) + 5;
   var ampm = "AM";
   if (hour >= 12 || hour <= 24) {
     ampm = "PM";
@@ -96,10 +111,9 @@ function sortByDelay(list) {
 };
 
 function aggregateDelays(list) {
-  var times = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+  var times = new Uint8Array(38);
   for (var i = 0; i < list.length; i++) {
     var delays = list[i].hist;
-    console.log(delays);
     for (var j = 0; j < delays.length; j++) {
       times[j] += delays[j];
     }
@@ -115,7 +129,7 @@ d3.json("../data/stop.json", function(error, result){
 var data; /* fetch json asynchronously */
 var routes = []; /* routes by descending order */
 var stopIds = []; /* stops by descending order */
-d3.json("../data/delay.json", function(error, result){
+d3.json("../data/data.json", function(error, result){
   data = result;
   var keys = Object.keys(data);
   for (var i = 0; i < keys.length; i++) {
@@ -136,13 +150,14 @@ d3.json("../data/delay.json", function(error, result){
   sortByDelay(routes);
   drawDelayedRoutes(routes.slice(0, 21));
   sortByDelay(stopIds);
-  // drawDelayedStops(stopIds.slice(0, 20), "stops");
+  drawDelayedStops(stopIds, "stops");
+  console.log(stopIds);
   var copy = aggregateDelays(stopIds);
   drawHist(copy, 'busiest-hist');
 });
 var times = ['5am','6am','7am','8am','9am','10am','11am','12pm',
              '1pm','2pm','3pm','4pm','5pm','6pm','7pm',
-             '8pm','9pm','10pm','11pm','12pm'];
+             '8pm','9pm','10pm','11pm','12am'];
 var routeObj = {'6': {'N': 'Berkeley BART', 'S': 'Downtown Oakland', 'color': '#006DB8', 'proj': ol_proj.fromLonLat([-122.261943, 37.866976])},
                 '7': {'N': 'Berkeley BART', 'S': 'E C Del Norte BART', 'color': '#75C695', 'proj': ol_proj.fromLonLat([-122.266520, 37.873903])},
                 '12': {'N': 'Oakland Amtrak', 'S': 'Westbrae - Berkeley', 'color': '#85D2DD', 'proj': ol_proj.fromLonLat([-122.268154, 37.862520])},
@@ -157,6 +172,14 @@ var routeObj = {'6': {'N': 'Berkeley BART', 'S': 'Downtown Oakland', 'color': '#
                 'F': {'N': 'Berkeley', 'S': 'San Francisco', 'color': '#F79447', 'proj': ol_proj.fromLonLat([-122.261580, 37.871708])}
                };
 var routeKeys = ['6', '7', '12', '18', '36', '51B', '52', '65', '67', '79', '88', 'F'];
+var stopKeys = [50144, 51377, 52667, 55452, 57300, 50151, 51538, 52995, 55456, 57555, 50229,
+                51555, 53677, 55551, 57566, 50400, 51579, 53700, 55559, 57711, 50444, 51582,
+                54050, 55585, 57725, 50575, 51584, 54230, 55593, 57774, 50600, 51606, 54303,
+                55609, 57776, 50607, 51687, 54454, 55664, 57955, 50765, 51705, 54455, 55678,
+                58005, 50966, 51719, 54466, 55935, 58558, 51015, 51759, 54588, 55967, 58778,
+                51072, 51997, 54655, 55999, 58835, 51073, 52155, 54767, 56521, 58889, 51096,
+                52223, 54963, 56555, 59114, 51173, 52244, 55006, 56654, 59555, 51180, 52250,
+                55138, 56888, 59593, 51244, 52280, 55226, 57200, 59977, 51300, 52333, 55304, 57225];
 
 for (var i = 0; i < routeKeys.length; i++) {
   var route = routeKeys[i];
@@ -374,44 +397,61 @@ map.on('click', function(evt) {
   activateFeature(evt.pixel, 'click');
 });
 
-var bubbleLayers = [];
+function drawDelayedStops(stopData) {
+  var bubbleLayers = [];
+  var bubbleStyle = {};
+  // Assumes that the stopIds are ordered by greatest delay
+  for (var i = 0; i < stopData.length; i++) {
+    if (stopData[i].mean > 60) {
+      console.log(i);
+      var scaledRadius = stopData[i].mean / stopData[0].mean * 50;
+      bubbleStyle[stopData[i].id] = new ol_style_Style({
+        image: new ol_style_Circle({
+          fill: new ol_style_Fill({
+            color: convertHex("#FFA500", 80)
+          }),
+          radius: scaledRadius,
+          stroke: new ol_style_Stroke({
+            color: [0, 0, 0, 0.8],
+            width: 0.5
+          })
+        })
+      });
+      createBubble(stopData[i].id);
+    }
+  }
 
-for (var i = 0; i < stopIds.length; i++) {
-  var route = routeKeys[i];
-  var routeDetail = routeObj[route];
-  createBubble(route, routeDetail['N']);
-}
+  /* To ensure name closure, pass the route and
+     its info as parameters into this function. */
+  function createBubble(sid) {
+    var gpxUrl = '../data/stops/' + sid + '.gpx';
+    var bubble = new ol_layer_Vector({
+      source: new ol_source_Vector({
+        url: gpxUrl,
+        format: new ol_format_GPX()
+      }),
+      style: bubbleStyle[sid],
+      opacity: 1,
+      visible: true
+    });
+    bubbleLayers.push(bubble);
+  }
 
-/* To ensure name closure, pass the route and
-   its info as parameters into this function. */
-function createBubble(r, d) {
-  var gpxUrl = '../data/gpx/'+r+'_'+d+'.gpx';
-  var vector = new ol_layer_Vector({
-    source: new ol_source_Vector(),
-    style: function(feature) {
-      var type = feature.getGeometry().getType();
-      return style[type+r];
-    },
-    opacity: 1,
-    visible: false
+  var bubbleView = new ol_View({
+    center: ol_proj.fromLonLat([-122.2582, 37.8688]),
+    maxZoom: 16,
+    minZoom: 15,
+    zoom: 15,
+    extent: transform([-122.271856, 37.860317, -122.247710, 37.877256]),
   });
-  vectorLayers.push(vector);
+
+  var bubbleMap = new ol_Map({
+    target: 'bubble-map',
+    interactions: ol_interaction.defaults({mouseWheelZoom:false}),
+    layers: Array(raster).concat(bubbleLayers),
+    view: bubbleView
+  });
 }
-
-var bubbleView = new ol_View({
-  center: ol_proj.fromLonLat([-122.2582, 37.8688]),
-  maxZoom: 18,
-  minZoom: 15,
-  zoom: 15,
-  extent: transform([-122.271856, 37.860317, -122.247710, 37.877256]),
-});
-
-var bubbleMap = new ol_Map({
-  target: 'bubble-map',
-  interactions: ol_interaction.defaults({mouseWheelZoom:false}),
-  layers: Array(raster).concat(vectorLayers),
-  view: bubbleView
-});
 
 /*
  * D3-utilizing function. Draw the histogram of delays per
@@ -420,7 +460,6 @@ var bubbleMap = new ol_Map({
  * summary at the bottom of page.
  */
 function drawHist(dataset, option) {
-  console.log(dataset)
   d3.select("#info svg").remove();
   var max = d3.max(dataset);
   var maxi = 0;
@@ -486,6 +525,8 @@ function drawHist(dataset, option) {
       return "rgb(" + r + g + b + ")";
     });
   tickRange.push(w + margin.left);
+  console.log('times' + times.length);
+  console.log('tickRange' + tickRange.length);
   var xScale = d3.scaleOrdinal()
     .domain(times)
     .range(tickRange);
@@ -515,14 +556,19 @@ function drawHist(dataset, option) {
  */
 function drawDelayedRoutes(dataset) {
   var tickNames = [];
+  var meanDelays = [];
   for (var i = 0; i < dataset.length; i++) {
     var num = dataset[i].id.split("_")[0];
     var desc = dataset[i].id.split("_")[1];
-    tickNames.push(num + ":" + desc);
+    /* Show only routes with at least half a minute avg delay */
+    if (dataset[i].mean > 30) {
+      tickNames.push(num + ":" + desc);
+      meanDelays.push(dataset[i].mean);
+    }
   }
 
-  var width = 600;
-  var height = 450;
+  var width = 800;
+  var height = 360;
   var max = Math.ceil(dataset[0].mean / 60);
   var margin = {
     top: 25,
@@ -546,14 +592,6 @@ function drawDelayedRoutes(dataset) {
     .attr("class", "x axis")
     .attr("transform", "translate(0,0)")
     .call(xAxis);
-  var xGrid = d3.axisTop(xScale)
-    .ticks(max)
-    .tickFormat("")
-    .tickSize(-h, 0, 0);
-  svg.append('g')
-    .attr('class', 'x grid')
-    .attr('transform', 'translate(0,0)')
-    .call(xGrid);
   var yScale = d3.scaleBand()
     .domain(tickNames)
     .range([0, h])
@@ -565,7 +603,7 @@ function drawDelayedRoutes(dataset) {
     .attr("class", "y axis big-y")
     .call(yAxis);
   var bars = svg.selectAll(".bar")
-    .data(dataset)
+    .data(meanDelays)
     .enter()
     .append("g");
   bars.append("rect")
@@ -573,5 +611,12 @@ function drawDelayedRoutes(dataset) {
     .attr("y", function(d, i) { return i * (yScale.step()); })
     .attr("height", yScale.step() - 2)
     .attr("x", function(d) { return xScale(0); })
-    .attr("width", function(d) { return xScale(d.mean/60); });
+    .attr("width", function(d) { return xScale(d/60); });
+  var xGrid = d3.axisTop(xScale)
+    .ticks(max)
+    .tickFormat("")
+    .tickSize(-h-5); // add additional height for polish
+  svg.append('g')
+    .attr('class', 'grid')
+    .call(xGrid);
 }
