@@ -83,7 +83,8 @@
   position: relative;
   text-align: center;
 
-  button {
+  .badge {
+    opacity: 0.3;
     border-radius: 16px;
     border-width: 3px;
     border-color: #333;
@@ -94,21 +95,27 @@
     margin-left: 2px;
     margin-right: 2px;
     font-size: 24px;
-    font-family: sans-serif;
+    font-family: "Lato", sans-serif;
     outline: none;
     transition: all .25s ease-in-out;
     -moz-transition: all .25s ease-in-out;
     -webkit-transition: all .25s ease-in-out;
   }
 
-  button:hover,
-  button:active {
-    -webkit-transform:scale(1.3);
-    -moz-transform:scale(1.3);
-    -ms-transform:scale(1.3);
-    transform:scale(1.3);
-    margin-left: 8px;
-    margin-right: 8px;
+  .badge:hover,
+  .badge:active,
+  .badge.selected {
+    opacity: 1 !important;
+    // margin-left: 8px;
+    // margin-right: 8px;
+  }
+}
+
+.dir {
+  display: none;
+
+  .visible {
+    display: block;
   }
 }
 
@@ -125,36 +132,28 @@
   -moz-transition: opacity .5s ease-in-out;
   -webkit-transition: opacity .5s ease-in-out;
 
-  button {
+  .db {
     font-size: 18px;
-    border-radius: 12px;
+    // border-radius: 12px;
     border-width: 3px;
     border-style: solid;
     border-color: #333;
     margin: 0px 2px 0px 2px;
     outline: none;
+    opacity: 0.3;
     background-color: #333;
     color: #e6d063;
     font-family: monospace;
     text-transform: uppercase;
-    transition: all .25s ease-in-out;
-    -moz-transition: all .25s ease-in-out;
-    -webkit-transition: all .25s ease-in-out;
   }
 
-  button:hover,
-  button:active {
-    -webkit-transform:scale(1.2);
-    -moz-transform:scale(1.2);
-    -ms-transform:scale(1.2);
-    transform:scale(1.2);
-    margin-left: 24px;
-    margin-right: 24px;
+  .db:hover,
+  .db:active,
+  .db.selected {
+    opacity: 1 !important;
+    // margin-left: 12px;
+    // margin-right: 12px;
   }
-}
-
-.dir {
-  display: none;
 }
 
 #cover {
@@ -238,7 +237,9 @@
   margin: 0 0 4px 0;
 }
 
-#route, .route {
+#route,
+.route,
+#arrivals .badge {
   border-radius: 16px;
   border-width: 2px;
   border-color: #333;
@@ -252,8 +253,10 @@
   display: inline-block;
 }
 
-#direction, .direction {
-  border-radius: 16px;
+#direction,
+.direction,
+#arrivals .db {
+  // border-radius: 16px;
   border-width: 2px;
   border-color: #333;
   border-style: solid;
@@ -265,6 +268,9 @@
   font-size: 18px;
   font-weight: normal;
   display: inline-block;
+  font-family: monospace;
+  text-transform: uppercase;
+  color: #e6d063;
 }
 
 #hist {

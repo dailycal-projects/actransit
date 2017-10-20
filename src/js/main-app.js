@@ -33,11 +33,13 @@ function toggleRoute(line) {
   for (var i = 0; i < vectorLayers.length; i++) {
     vectorLayers[i].setVisible(false);
   }
-  /* Hide other routes */
+  /* Fade other routes */
   var routes = document.getElementsByClassName('badge');
   for (var i = 0; i < routes.length; i++) {
     if (line !== routes[i].id.slice(6)) {
-      routes[i].setAttribute("style", "display:none");
+      routes[i].classList.remove("selected");
+    } else {
+      routes[i].classList.add("selected");
     }
   }
   /* Show direction options */
@@ -49,6 +51,7 @@ function toggleRoute(line) {
   bus = line;
   document.getElementById(name).style.display = "inline-block";
   document.getElementById("dirs").style.opacity = 1;
+  hideInfo();
 };
 
 function toggleDir(direction, index, proj) {
@@ -56,7 +59,9 @@ function toggleDir(direction, index, proj) {
   var dirs = document.querySelectorAll('.dir button');
   for (var i = 0; i < routes.length; i++) {
     if (direction !== dirs[i].innerHTML) {
-      dirs[i].setAttribute("style", "display:none");
+      dirs[i].classList.remove("selected");
+    } else {
+      dirs[i].classList.add("selected");
     }
   }
   for (var i = 0; i < vectorLayers.length; i++) {
@@ -65,6 +70,7 @@ function toggleDir(direction, index, proj) {
   vectorLayers[index].setVisible(true);
   dir = direction;
   console.log(dir);
+  showInfo(bus + "_" + dir, data);
   view.animate({
     center: proj,
     duration: 1200
@@ -147,11 +153,20 @@ d3.json("../data/data.json", function(error, result){
       continue;
     }
   }
-  sortByDelay(routes);
-  drawDelayedRoutes(routes.slice(0, 21));
+  // Draw bubble map of delays by stop
   sortByDelay(stopIds);
   drawDelayedStops(stopIds, "stops");
-  console.log(stopIds);
+  // Draw arrival graphs for selected routes
+  sortByDelay(routes);
+  console.log(routes);
+  for (var i = 0; i < selectRoutes.length; i++) {
+    var selectBus = selectRoutes[i].split("-")[0];
+    var selectDir = selectRoutes[i].split("-")[1];
+    var r = data[selectBus + "_" + routeObj[selectBus][selectDir]];
+    console.log(r);
+    drawDelays("#arrivals-"+selectRoutes[i], r.sample);
+  }
+  // drawDelayedRoutes(routes.slice(0, 21));
   var copy = aggregateDelays(stopIds);
   drawHist(copy, 'busiest-hist');
 });
@@ -161,25 +176,18 @@ var times = ['5am','6am','7am','8am','9am','10am','11am','12pm',
 var routeObj = {'6': {'N': 'Berkeley BART', 'S': 'Downtown Oakland', 'color': '#006DB8', 'proj': ol_proj.fromLonLat([-122.261943, 37.866976])},
                 '7': {'N': 'Berkeley BART', 'S': 'E C Del Norte BART', 'color': '#75C695', 'proj': ol_proj.fromLonLat([-122.266520, 37.873903])},
                 '12': {'N': 'Oakland Amtrak', 'S': 'Westbrae - Berkeley', 'color': '#85D2DD', 'proj': ol_proj.fromLonLat([-122.268154, 37.862520])},
-                '18': {'N': 'Albany', 'S': 'Lake Meritt BART', 'color': '#8D6538', 'proj': ol_proj.fromLonLat([-122.267477, 37.866868])},
+                '18': {'N': 'Lake Meritt BART', 'S': 'Albany', 'color': '#8D6538', 'proj': ol_proj.fromLonLat([-122.267477, 37.866868])},
                 '36': {'N': 'UC Campus', 'S': 'West Oakland BART', 'color': '#C4A2CB', 'proj': ol_proj.fromLonLat([-122.261340, 37.866013])},
                 '51B': {'N': 'Berkeley Amtrak', 'S': 'Rockridge BART', 'color': '#008B59', 'proj': ol_proj.fromLonLat([-122.261276, 37.867495])},
                 '52': {'N': 'U.c. Campus', 'S': 'U.c. Village', 'color': '#F598AA', 'proj': ol_proj.fromLonLat([-122.261580, 37.871708])},
-                '65': {'N': 'Euclid', 'S': 'To Downtown Berkeley', 'color': '#652D91', 'proj': ol_proj.fromLonLat([-122.265167, 37.874832])},
-                '67': {'N': 'Spruce', 'S': 'To Downtown Berkeley', 'color': '#FECD08', 'proj': ol_proj.fromLonLat([-122.266344, 37.872394])},
+                '65': {'N': 'To Downtown Berkeley', 'S': 'Euclid', 'color': '#652D91', 'proj': ol_proj.fromLonLat([-122.265167, 37.874832])},
+                '67': {'N': 'To Downtown Berkeley', 'S': 'Spruce', 'color': '#FECD08', 'proj': ol_proj.fromLonLat([-122.266344, 37.872394])},
                 '79': {'N': 'El Cerrito Plaza BART', 'S': 'Rockridge BART', 'color': '#00B1B0', 'proj': ol_proj.fromLonLat([-122.259189, 37.867030])},
                 '88': {'N': 'Berkeley BART', 'S': 'Lake Merritt BART', 'color': '#9A983A', 'proj': ol_proj.fromLonLat([-122.267837, 37.870075])},
-                'F': {'N': 'Berkeley', 'S': 'San Francisco', 'color': '#F79447', 'proj': ol_proj.fromLonLat([-122.261580, 37.871708])}
+                'F': {'N': 'San Francisco', 'S': 'Berkeley', 'color': '#F79447', 'proj': ol_proj.fromLonLat([-122.261580, 37.871708])}
                };
 var routeKeys = ['6', '7', '12', '18', '36', '51B', '52', '65', '67', '79', '88', 'F'];
-var stopKeys = [50144, 51377, 52667, 55452, 57300, 50151, 51538, 52995, 55456, 57555, 50229,
-                51555, 53677, 55551, 57566, 50400, 51579, 53700, 55559, 57711, 50444, 51582,
-                54050, 55585, 57725, 50575, 51584, 54230, 55593, 57774, 50600, 51606, 54303,
-                55609, 57776, 50607, 51687, 54454, 55664, 57955, 50765, 51705, 54455, 55678,
-                58005, 50966, 51719, 54466, 55935, 58558, 51015, 51759, 54588, 55967, 58778,
-                51072, 51997, 54655, 55999, 58835, 51073, 52155, 54767, 56521, 58889, 51096,
-                52223, 54963, 56555, 59114, 51173, 52244, 55006, 56654, 59555, 51180, 52250,
-                55138, 56888, 59593, 51244, 52280, 55226, 57200, 59977, 51300, 52333, 55304, 57225];
+var selectRoutes = ['51B-S', '51B-N', '36-S', '36-N', '18-S', '18-N', 'F-S', 'F-N', '6-S', '6-N','79-S', '79-N'];
 
 for (var i = 0; i < routeKeys.length; i++) {
   var route = routeKeys[i];
@@ -321,7 +329,7 @@ var map = new ol_Map({
  * Display info based on feature clicked, hide if feature-less
  * part of map is clicked.
  */
-function activateFeature(pixel, onEvent) {
+function activateFeature(pixel, onEvent, route=null) {
   var features = [];
   map.forEachFeatureAtPixel(pixel, function(feature) {
     features.push(feature);
@@ -354,40 +362,48 @@ function activateFeature(pixel, onEvent) {
         key = key + "_" + bus + "_" + dir;
       }
       console.log(key);
-      document.getElementById("info").style.display = 'block';
-      var marker = key.split("_");
-      document.getElementById("route").innerHTML = bus;
-      document.getElementById("route").className = "badge-" + bus;
-      document.getElementById("direction").innerHTML = dir;
-      if (marker.length === 3) {
-        document.getElementById("stopId").style.display = "block";
-        // document.getElementById("stopId").innerHTML = "Stop ID: " + marker[0];
-        document.getElementById("stopName").innerHTML = stopNames[marker[0]];
-      } else {
-        document.getElementById("stopId").style.display = "none";
-        document.getElementById("stopName").innerHTML = "Route Information";
-      }
-      var innerHTML = "Average Delay: <span>" + convertTime(data[key]["mean"]) + "</span>";
-      document.getElementById("mean").innerHTML = innerHTML;
-      // innerHTML = "Median Delay: <span>" + convertTime(data[key]["median"]) + "</span>";
-      // document.getElementById("median").innerHTML = innerHTML;
-      innerHTML = "At least 3 minutes delay: <span>" + Math.floor(data[key]["late"] / data[key]["length"] * 100) + "%</span>";
-      document.getElementById("late").innerHTML = innerHTML;
-      // innerHTML = "At least 10 minutes delay: <span>" + Math.floor(data[key]["vlate"] / data[key]["length"] * 100) + "%</span>";
-      // document.getElementById("vlate").innerHTML = innerHTML;
-      var summ = drawHist(data[key]["hist"], "hist");
-      innerHTML = "So in this case, the busiest time slot was <b>" + getTimeSlot(summ[0]) + "-" + getTimeSlot(summ[0] + 1) + "</b>, which saw <b>" + summ[1] + "%</b> of delays on this stop or route.";
-      document.getElementById("hist-sum").innerHTML = innerHTML;
+      showInfo(key, data, stopNames);
     } else {
       hover = features[0];
     }
   } else {
     map.getViewport().style.cursor = 'move';
     if (onEvent === "click") {
-      document.getElementById("info").style.display = "none";
+      hideInfo();
     }
   }
 };
+
+function showInfo(key, data, stopNames=null) {
+  document.getElementById("info").style.display = 'block';
+  var marker = key.split("_");
+  document.getElementById("route").innerHTML = bus;
+  document.getElementById("route").className = "badge-" + bus;
+  document.getElementById("direction").innerHTML = dir;
+  if (marker.length === 3) {
+    document.getElementById("stopId").style.display = "block";
+    // document.getElementById("stopId").innerHTML = "Stop ID: " + marker[0];
+    document.getElementById("stopName").innerHTML = stopNames[marker[0]];
+  } else {
+    document.getElementById("stopId").style.display = "none";
+    document.getElementById("stopName").innerHTML = "Route Information";
+  }
+  var innerHTML = "Average Delay: <span>" + convertTime(data[key]["mean"]) + "</span>";
+  document.getElementById("mean").innerHTML = innerHTML;
+  // innerHTML = "Median Delay: <span>" + convertTime(data[key]["median"]) + "</span>";
+  // document.getElementById("median").innerHTML = innerHTML;
+  innerHTML = "At least 3 minutes delay: <span>" + Math.floor(data[key]["late"] / data[key]["length"] * 100) + "%</span>";
+  document.getElementById("late").innerHTML = innerHTML;
+  // innerHTML = "At least 10 minutes delay: <span>" + Math.floor(data[key]["vlate"] / data[key]["length"] * 100) + "%</span>";
+  // document.getElementById("vlate").innerHTML = innerHTML;
+  var summ = drawHist(data[key]["hist"], "hist");
+  innerHTML = "So in this case, the busiest time slot was <b>" + getTimeSlot(summ[0]) + "-" + getTimeSlot(summ[0] + 1) + "</b>, which saw <b>" + summ[1] + "%</b> of delays on this stop or route.";
+  document.getElementById("hist-sum").innerHTML = innerHTML;
+}
+
+function hideInfo() {
+  document.getElementById("info").style.display = "none";
+}
 
 map.on('pointermove', function(evt) {
   activateFeature(evt.pixel, 'pointermove');
@@ -402,9 +418,8 @@ function drawDelayedStops(stopData) {
   var bubbleStyle = {};
   // Assumes that the stopIds are ordered by greatest delay
   for (var i = 0; i < stopData.length; i++) {
-    if (stopData[i].mean > 60) {
-      console.log(i);
-      var scaledRadius = stopData[i].mean / stopData[0].mean * 50;
+    if (stopData[i].mean > 0) {
+      var scaledRadius = Math.sqrt(stopData[i].mean / stopData[0].mean) * 30;
       bubbleStyle[stopData[i].id] = new ol_style_Style({
         image: new ol_style_Circle({
           fill: new ol_style_Fill({
@@ -439,7 +454,7 @@ function drawDelayedStops(stopData) {
 
   var bubbleView = new ol_View({
     center: ol_proj.fromLonLat([-122.2582, 37.8688]),
-    maxZoom: 16,
+    maxZoom: 15,
     minZoom: 15,
     zoom: 15,
     extent: transform([-122.271856, 37.860317, -122.247710, 37.877256]),
@@ -447,7 +462,8 @@ function drawDelayedStops(stopData) {
 
   var bubbleMap = new ol_Map({
     target: 'bubble-map',
-    interactions: ol_interaction.defaults({mouseWheelZoom:false}),
+    controls: [],
+    interactions: [],
     layers: Array(raster).concat(bubbleLayers),
     view: bubbleView
   });
@@ -525,8 +541,8 @@ function drawHist(dataset, option) {
       return "rgb(" + r + g + b + ")";
     });
   tickRange.push(w + margin.left);
-  console.log('times' + times.length);
-  console.log('tickRange' + tickRange.length);
+  // console.log('times' + times.length);
+  // console.log('tickRange' + tickRange.length);
   var xScale = d3.scaleOrdinal()
     .domain(times)
     .range(tickRange);
@@ -619,4 +635,58 @@ function drawDelayedRoutes(dataset) {
   svg.append('g')
     .attr('class', 'grid')
     .call(xGrid);
+}
+
+function drawDelays(elementID, arrivalTimes) {
+  var width = 400;
+  var height = 160;
+  var margin = {
+    top: 20,
+    right: 12,
+    bottom: 20,
+    left: 12
+  };
+  var w = width - margin.left - margin.right;
+  var h = height - margin.top - margin.bottom;
+
+  var svg = d3.select(elementID)
+    .append("svg")
+    .attr("width", width)
+    .attr("height", height)
+    .append("g")
+    .attr("transform", "translate(" + (margin.left + w/2) + "," + (margin.top + h) + ")");
+
+  var rScale = d3.scaleLinear()
+    .domain([0, 50])
+    .range([0, w/2])
+
+  var arc = d3.arc()
+    .startAngle(-Math.PI / 2)
+    .endAngle(Math.PI / 2)
+    .innerRadius(function(d) { return rScale(d) - 1; })
+    .outerRadius(function(d) { return rScale(d); });
+
+  var arcs = svg.selectAll(".arc")
+    .data(arrivalTimes)
+    .enter()
+    .append("g");
+  arcs.append("path")
+    .attr("class", "arc")
+    .attr("d", function(d) {
+      return arc(d);
+    })
+    .attr("fill", "#5D9FCF")
+    .attr("transform", function(d) {
+      return "translate("+(rScale(d)-w/2)+",0) scale(1, 0.75)";
+    });
+
+  var xScale = d3.scaleLinear()
+    .domain([0, 50])
+    .range([0, w]);
+  var xAxis = d3.axisBottom(xScale)
+    .ticks(5);
+  svg.append('g')
+    .attr("class", "x axis")
+    .attr("transform", "translate("+(-w/2)+",0)")
+    .call(xAxis);
 }
