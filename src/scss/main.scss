@@ -237,9 +237,13 @@
   margin: 0 0 4px 0;
 }
 
+#bubble-map {
+  margin-bottom: 32px;
+}
+
 #route,
 .route,
-#arrivals .badge {
+.badge {
   border-radius: 16px;
   border-width: 2px;
   border-color: #333;
@@ -250,18 +254,18 @@
   margin: 0px 2px 0px 2px;
   font-size: 18px;
   font-weight: normal;
+  font-family: "Lato", sans-serif;
   display: inline-block;
+  line-height: normal;
 }
 
 #direction,
 .direction,
-#arrivals .db {
-  // border-radius: 16px;
+.db {
   border-width: 2px;
   border-color: #333;
   border-style: solid;
   background-color: #333;
-  color: lightblue;
   padding-left: 8px;
   padding-right: 8px;
   margin: 0px 2px 0px 2px;
@@ -271,6 +275,7 @@
   font-family: monospace;
   text-transform: uppercase;
   color: #e6d063;
+  line-height: normal;
 }
 
 #hist {
@@ -304,6 +309,45 @@ div.bar {
 
 .big-y {
   font-size: 16px;
+}
+
+#methodology {
+  margin: 1.618em auto;
+  max-width: 600px;
+  padding: 0;
+
+  .el {
+    list-style-type: none;
+
+    .circ-num {
+      display: inline-block;
+      background-color: crimson;
+      color: white;
+      font-family: sans-serif;
+      text-align: center;
+      border-radius: 50%;
+      height: 24px;
+      width: 24px;
+      margin: 4px 8px 4px 4px;
+    }
+  }
+}
+
+#arrivals {
+  text-align: center;
+  margin-bottom: 32px;
+
+  .arrival-graph-left {
+    float: right;
+    margin-top: 6px;
+    margin-bottom: 6px;
+  }
+
+  .arrival-graph-right {
+    float: left;
+    margin-top: 6px;
+    margin-bottom: 6px;
+  }
 }
 
 /* Utility rules */
