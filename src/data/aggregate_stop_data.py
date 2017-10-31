@@ -1,5 +1,5 @@
 import os, glob
-import geojson
+import json, geojson
 
 # class Bubble():
 #     def __init__(self, x, y, area):
@@ -12,6 +12,8 @@ import geojson
 #         return {'type'}
 
 data = {}
+json_data = json.load(open('data.json'))
+max_delay = 0
 
 for filename in glob.glob("stops/*.gpx"):
     stopId = filename[6:11]
@@ -25,6 +27,7 @@ for filename in glob.glob("stops/*.gpx"):
     stopLon = latlon[i2+1:i3]
     # print(stopLat, stopLon)
     f.close()
+    delay = json_data[stopId]['mean']
 
-g = json.loads(open('stop.json').read())
-print(g.keys())
+# g = json.loads(open('stop.json').read())
+# print(g.keys())
