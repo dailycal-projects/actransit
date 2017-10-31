@@ -92,8 +92,7 @@
     color: #fff;
     padding-left: 8px;
     padding-right: 8px;
-    margin-left: 2px;
-    margin-right: 2px;
+    margin: 3px;
     font-size: 24px;
     font-family: "Lato", sans-serif;
     outline: none;
@@ -127,6 +126,7 @@
   margin-bottom: 12px;
   text-align: center;
   position: relative;
+  display: table;
   opacity: 0;
   transition: opacity .5s ease-in-out;
   -moz-transition: opacity .5s ease-in-out;
@@ -138,7 +138,7 @@
     border-width: 3px;
     border-style: solid;
     border-color: #333;
-    margin: 0px 2px 0px 2px;
+    margin: 3px;
     outline: none;
     opacity: 0.3;
     background-color: #333;
@@ -316,37 +316,30 @@ div.bar {
   max-width: 600px;
   padding: 0;
 
-  .el {
-    list-style-type: none;
-
-    .circ-num {
-      display: inline-block;
-      background-color: crimson;
-      color: white;
-      font-family: sans-serif;
-      text-align: center;
-      border-radius: 50%;
-      height: 24px;
-      width: 24px;
-      margin: 4px 8px 4px 4px;
-    }
+  .circ-num {
+    display: inline-block;
+    background-color: crimson;
+    color: white;
+    font-family: sans-serif;
+    text-align: center;
+    border-radius: 50%;
+    height: 24px;
+    width: 24px;
+    margin: 4px 8px 4px 4px;
   }
 }
 
 #arrivals {
-  text-align: center;
   margin-bottom: 32px;
 
-  .arrival-graph-left {
-    float: right;
-    margin-top: 6px;
-    margin-bottom: 6px;
-  }
+  .col-md-6 {
 
-  .arrival-graph-right {
-    float: left;
-    margin-top: 6px;
-    margin-bottom: 6px;
+    .arrival-graph-left {
+      float: right;
+    }
+    .arrival-graph-right {
+      float: left;
+    }
   }
 }
 
