@@ -1,5 +1,15 @@
 import os, glob
-import json
+import geojson
+
+# class Bubble():
+#     def __init__(self, x, y, area):
+#         self.x = x
+#         self.y = y
+#         self.area = area
+#
+#     @property
+#     def __geo_interface__(self):
+#         return {'type'}
 
 data = {}
 
