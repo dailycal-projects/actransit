@@ -138,8 +138,8 @@ exports.drawDelays = function (elementID, arrivalTimes, isDemo=false) {
       return arc(d);
     })
     .attr("fill", function(d) {
-      if (d < 30) return "#bdbdbd";
-      if (d < 35) return "#fec44f";
+      if (d <= 30) return "#bdbdbd";
+      if (d <= 35) return "#fec44f";
       else return "#d95f0e";
     })
     .attr("transform", function(d) {
@@ -187,29 +187,29 @@ exports.drawDelays = function (elementID, arrivalTimes, isDemo=false) {
     .attr('y', -margin.top - h)
     .html(badge);
 
-  if (isDemo) {
-    var stepOne = svg.append('foreignObject')
-      .attr('class','svg-fo')
-      .attr('width', 220)
-      .attr('x', -w/2)
-      .attr('y', margin.top)
-      .append('xhtml:div')
-      .html('<div class="circ-num">1</div>You open the NextBus (or equivalent) app at 3:24PM. Start a stopwatch.');
-    var stepTwo = svg.append('foreignObject')
-      .attr('class','svg-fo')
-      .attr('width', 280)
-      .attr('x', -w/3)
-      .attr('y', -h + margin.top)
-      .append('xhtml:div')
-      .html('<div class="circ-num">2</div>According to the app, the next <span class="badge badge-F">F</span><span class="db">San Francisco</span> bus will arrive in 30 minutes, or 3:54PM. This is marked as 0 on the x axis.');
-    var stepThree = svg.append('foreignObject')
-      .attr('class','svg-fo')
-      .attr('width', 220)
-      .attr('x', w/6)
-      .attr('y', margin.top)
-      .append('xhtml:div')
-      .html('<div class="circ-num">3</div>You wait longer than you expect. The bus arrives at 4:06PM, so you record that it is 12 minutes late.');
-  }
+  // if (isDemo) {
+  //   var stepOne = svg.append('foreignObject')
+  //     .attr('class','svg-fo')
+  //     .attr('width', 220)
+  //     .attr('x', -w/2)
+  //     .attr('y', margin.top)
+  //     .append('xhtml:div')
+  //     .html('<div class="circ-num">1</div>You open the NextBus (or equivalent) app at 3:24PM. Start a stopwatch.');
+  //   var stepTwo = svg.append('foreignObject')
+  //     .attr('class','svg-fo')
+  //     .attr('width', 280)
+  //     .attr('x', -w/3)
+  //     .attr('y', -h + margin.top)
+  //     .append('xhtml:div')
+  //     .html('<div class="circ-num">2</div>According to the app, the next <span class="badge badge-F">F</span><span class="db">San Francisco</span> bus will arrive in 30 minutes, or 3:54PM. This is marked as 0 on the x axis.');
+  //   var stepThree = svg.append('foreignObject')
+  //     .attr('class','svg-fo')
+  //     .attr('width', 220)
+  //     .attr('x', w/6)
+  //     .attr('y', margin.top)
+  //     .append('xhtml:div')
+  //     .html('<div class="circ-num">3</div>You wait longer than you expect. The bus arrives at 4:06PM, so you record that it is 12 minutes late.');
+  // }
 }
 
 /*

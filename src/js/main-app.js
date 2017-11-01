@@ -64,12 +64,12 @@ d3.json("../data/data.json", function(error, result){
     }
   }
   // Draw bubble map of delays by stop
-  console.log(data);
-  util.sortByDelay(stopIds);
-  drawDelayedStops(stopIds, "stops");
+  // util.sortByDelay(stopIds);
+  console.log(stopIds);
+  // drawDelayedStops(stopIds, "stops");
   // Draw arrival graphs for selected routes
   util.sortByDelay(routeIds);
-  graphs.drawDelays("#methodology", [42], true);
+  graphs.drawDelays("#methodology", [30, 42], true);
   for (var i = 0; i < selectRoutes.length; i++) {
     var selectBus = selectRoutes[i].split("-")[0];
     var selectDir = selectRoutes[i].split("-")[1];
@@ -338,58 +338,58 @@ map.on('click', function(evt) {
   activateFeature(evt.pixel, 'click');
 });
 
-function drawDelayedStops(sd) {
-  var bubbleLayers = [];
-  var bubbleStyle = {};
-  // Assumes that the stopIds are ordered by greatest delay
-  for (var i = 0; i < sd.length; i++) {
-    if (sd[i].mean > 0) {
-      var scaledRadius = Math.sqrt(sd[i].mean / sd[0].mean) * 30;
-      bubbleStyle[sd[i].id] = new ol_style_Style({
-        image: new ol_style_Circle({
-          fill: new ol_style_Fill({
-            color: util.convertHex("#FFA500", 80)
-          }),
-          radius: scaledRadius,
-          stroke: new ol_style_Stroke({
-            color: [0, 0, 0, 0.8],
-            width: 0.5
-          })
-        })
-      });
-      createBubble(sd[i].id);
-    }
-  }
-
-  /* To ensure name closure, pass the route and
-     its info as parameters into this function. */
-  function createBubble(sid) {
-    var gpxUrl = '../data/stops/' + sid + '.gpx';
-    var bubble = new ol_layer_Vector({
-      source: new ol_source_Vector({
-        url: gpxUrl,
-        format: new ol_format_GPX()
-      }),
-      style: bubbleStyle[sid],
-      opacity: 1,
-      visible: true
-    });
-    bubbleLayers.push(bubble);
-  }
-
-  var bubbleView = new ol_View({
-    center: ol_proj.fromLonLat([-122.2582, 37.8688]),
-    maxZoom: 15,
-    minZoom: 15,
-    zoom: 15,
-    extent: transform([-122.271856, 37.860317, -122.247710, 37.877256]),
-  });
-
-  var bubbleMap = new ol_Map({
-    target: 'bubble-map',
-    controls: [],
-    interactions: [],
-    layers: Array(raster).concat(bubbleLayers),
-    view: bubbleView
-  });
-}
+// function drawDelayedStops(sd) {
+//   var bubbleLayers = [];
+//   var bubbleStyle = {};
+//   // Assumes that the stopIds are ordered by greatest delay
+//   for (var i = 0; i < sd.length; i++) {
+//     if (sd[i].mean > 0) {
+//       var scaledRadius = Math.sqrt(sd[i].mean / sd[0].mean) * 30;
+//       bubbleStyle[sd[i].id] = new ol_style_Style({
+//         image: new ol_style_Circle({
+//           fill: new ol_style_Fill({
+//             color: util.convertHex("#FFA500", 80)
+//           }),
+//           radius: scaledRadius,
+//           stroke: new ol_style_Stroke({
+//             color: [0, 0, 0, 0.8],
+//             width: 0.5
+//           })
+//         })
+//       });
+//       createBubble(sd[i].id);
+//     }
+//   }
+//
+//   /* To ensure name closure, pass the route and
+//      its info as parameters into this function. */
+//   function createBubble(sid) {
+//     var gpxUrl = '../data/stops/' + sid + '.gpx';
+//     var bubble = new ol_layer_Vector({
+//       source: new ol_source_Vector({
+//         url: gpxUrl,
+//         format: new ol_format_GPX()
+//       }),
+//       style: bubbleStyle[sid],
+//       opacity: 1,
+//       visible: true
+//     });
+//     bubbleLayers.push(bubble);
+//   }
+//
+//   var bubbleView = new ol_View({
+//     center: ol_proj.fromLonLat([-122.2582, 37.8688]),
+//     maxZoom: 15,
+//     minZoom: 15,
+//     zoom: 15,
+//     extent: transform([-122.271856, 37.860317, -122.247710, 37.877256]),
+//   });
+//
+//   var bubbleMap = new ol_Map({
+//     target: 'bubble-map',
+//     controls: [],
+//     interactions: [],
+//     layers: Array(raster).concat(bubbleLayers),
+//     view: bubbleView
+//   });
+// }
