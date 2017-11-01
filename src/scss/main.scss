@@ -74,6 +74,43 @@
   fill: #F79447;
 }
 
+#route,
+.route,
+.badge {
+  border-radius: 16px;
+  border-width: 2px;
+  border-color: #333;
+  border-style: solid;
+  color: #fff;
+  padding-left: 8px;
+  padding-right: 8px;
+  margin: 0px 2px 0px 2px;
+  font-size: 18px;
+  font-weight: normal;
+  font-family: "Lato", sans-serif;
+  display: inline-block;
+  line-height: normal;
+}
+
+#direction,
+.direction,
+.db {
+  border-width: 2px;
+  border-color: #333;
+  border-style: solid;
+  background-color: #333;
+  padding-left: 8px;
+  padding-right: 8px;
+  margin: 0px 2px 0px 2px;
+  font-size: 18px;
+  font-weight: normal;
+  display: inline-block;
+  font-family: monospace;
+  text-transform: uppercase;
+  color: #e6d063;
+  line-height: normal;
+}
+
 #lines {
   width: 80%;
   display: block;
@@ -214,19 +251,25 @@
   background-color: rgba(255,255,255,0.7);
   padding: 32px;
   z-index: 1;
+
+  h2 {
+    text-align: left;
+  }
+
+  h3 {
+    margin-top: 10px;
+    font-weight: normal;
+  }
+
+  span {
+    font-weight: bold;
+  }
 }
 
-#info h2 {
-  text-align: left;
-}
-
-#info h3 {
-  margin-top: 10px;
-  font-weight: normal;
-}
-
-#info span {
-  font-weight: bold;
+@media (max-device-width: 600px) {
+  #info {
+    width: 100%;
+  }
 }
 
 #stopId {
@@ -239,43 +282,6 @@
 
 #bubble-map {
   margin-bottom: 32px;
-}
-
-#route,
-.route,
-.badge {
-  border-radius: 16px;
-  border-width: 2px;
-  border-color: #333;
-  border-style: solid;
-  color: #fff;
-  padding-left: 8px;
-  padding-right: 8px;
-  margin: 0px 2px 0px 2px;
-  font-size: 18px;
-  font-weight: normal;
-  font-family: "Lato", sans-serif;
-  display: inline-block;
-  line-height: normal;
-}
-
-#direction,
-.direction,
-.db {
-  border-width: 2px;
-  border-color: #333;
-  border-style: solid;
-  background-color: #333;
-  padding-left: 8px;
-  padding-right: 8px;
-  margin: 0px 2px 0px 2px;
-  font-size: 18px;
-  font-weight: normal;
-  display: inline-block;
-  font-family: monospace;
-  text-transform: uppercase;
-  color: #e6d063;
-  line-height: normal;
 }
 
 #hist {
@@ -311,35 +317,59 @@ div.bar {
   font-size: 16px;
 }
 
-#methodology {
-  margin: 1.618em auto;
-  max-width: 600px;
-  padding: 0;
-
-  .circ-num {
-    display: inline-block;
-    background-color: crimson;
-    color: white;
-    font-family: sans-serif;
-    text-align: center;
-    border-radius: 50%;
-    height: 24px;
-    width: 24px;
-    margin: 4px 8px 4px 4px;
-  }
-}
+// #methodology {
+//   margin: 1.618em auto;
+//   max-width: 600px;
+//   padding: 0;
+//
+//   .circ-num {
+//     display: inline-block;
+//     background-color: crimson;
+//     color: white;
+//     font-family: sans-serif;
+//     text-align: center;
+//     border-radius: 50%;
+//     height: 24px;
+//     width: 24px;
+//     margin: 4px 8px 4px 4px;
+//   }
+// }
 
 #arrivals {
   margin-bottom: 32px;
 
   .col-md-6 {
 
-    .arrival-graph-left {
-      float: right;
+    @media (min-device-width: 600px) {
+      .arrival-graph-left {
+        float: right;
+      }
+      .arrival-graph-right {
+        float: left;
+      }
     }
-    .arrival-graph-right {
-      float: left;
-    }
+  }
+}
+
+#g-demo-box {
+  display: block;
+}
+
+#g-demo-small-box {
+  display: none;
+}
+
+@media (max-device-width: 600px) {
+  #g-demo-box {
+    display: none;
+  }
+
+  #g-demo-small-box {
+    display: none;
+  }
+
+  #g-bubble-map-box {
+    overflow: scroll;
   }
 }
 

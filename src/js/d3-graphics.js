@@ -18,33 +18,26 @@ exports.drawHist = function (dataset, option) {
     total += dataset[i];
   }
 
-  var margin;
+  var margin = {
+    top: 20,
+    right: 0,
+    bottom: 20,
+    left: 40
+  };
   var width;
   var height;
-  if (option === "hist") {
-    margin = {
-      top: 15,
-      right: 25,
-      bottom: 20,
-      left: 40
-    };
-    width = 520;
-    height = 130;
+  if (option === "small") {
+    width = 320;
+    height = 140;
   } else {
-    margin = {
-      top: 15,
-      right: 25,
-      bottom: 30,
-      left: 40
-    };
-    width = 800;
-    height = 250;
+    width = 450;
+    height = 140;
   }
   var w = width - margin.left - margin.right; //440
   var h = height - margin.top - margin.bottom; // 100
   var barPadding = 1;
   var tickRange = [];
-  var svg = d3.select("#" + option)
+  var svg = d3.select("#hist")
     .append("svg")
     .attr("width", w + margin.left + margin.right) //w + 50
     .attr("height", h + margin.top + margin.bottom); //h + 30
@@ -70,14 +63,12 @@ exports.drawHist = function (dataset, option) {
     })
     .attr("fill", "crimson");
   tickRange.push(w + margin.left);
-  // console.log('times' + times.length);
-  // console.log('tickRange' + tickRange.length);
   var xScale = d3.scaleOrdinal()
     .domain(times)
     .range(tickRange);
   var xAxis = d3.axisBottom(xScale);
   svg.append('g')
-    .attr("class", "x axis")
+    .attr("class", "time-axis")
     .attr("transform", "translate(0," + (margin.top + h) + ")")
     .call(xAxis);
   var yScale = d3.scaleLinear()
@@ -91,23 +82,28 @@ exports.drawHist = function (dataset, option) {
     .attr("class", "y axis")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
     .call(yAxis);
+
+  if (option === 'small') {
+    var hours = document.querySelectorAll('.time-axis text');
+    for (var i = 0; i < hours.length; i++) {
+      var h = hours[i].innerHTML;
+      if (h.slice(0, h.length - 2) % 2 === 0) {
+        hours[i].style = 'fill: none';
+      }
+    }
+  }
   return [maxi, Math.floor(max / total * 100)];
 }
 
 exports.drawDelays = function (elementID, arrivalTimes, isDemo=false) {
-  var width = 400;
-  var height = 180;
+  var width = 320; //400;
+  var height = 150;//180;
   var margin = {
     top: 28,
     right: 12,
     bottom: 40,
     left: 12
   };
-  if (isDemo) {
-    width = 600;
-    height = 330;
-    margin.bottom = 140;
-  }
   var w = width - margin.left - margin.right;
   var h = height - margin.top - margin.bottom;
 
@@ -186,30 +182,6 @@ exports.drawDelays = function (elementID, arrivalTimes, isDemo=false) {
     .attr('x', -width/2 + margin.left)
     .attr('y', -margin.top - h)
     .html(badge);
-
-  // if (isDemo) {
-  //   var stepOne = svg.append('foreignObject')
-  //     .attr('class','svg-fo')
-  //     .attr('width', 220)
-  //     .attr('x', -w/2)
-  //     .attr('y', margin.top)
-  //     .append('xhtml:div')
-  //     .html('<div class="circ-num">1</div>You open the NextBus (or equivalent) app at 3:24PM. Start a stopwatch.');
-  //   var stepTwo = svg.append('foreignObject')
-  //     .attr('class','svg-fo')
-  //     .attr('width', 280)
-  //     .attr('x', -w/3)
-  //     .attr('y', -h + margin.top)
-  //     .append('xhtml:div')
-  //     .html('<div class="circ-num">2</div>According to the app, the next <span class="badge badge-F">F</span><span class="db">San Francisco</span> bus will arrive in 30 minutes, or 3:54PM. This is marked as 0 on the x axis.');
-  //   var stepThree = svg.append('foreignObject')
-  //     .attr('class','svg-fo')
-  //     .attr('width', 220)
-  //     .attr('x', w/6)
-  //     .attr('y', margin.top)
-  //     .append('xhtml:div')
-  //     .html('<div class="circ-num">3</div>You wait longer than you expect. The bus arrives at 4:06PM, so you record that it is 12 minutes late.');
-  // }
 }
 
 /*

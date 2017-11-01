@@ -64,12 +64,11 @@ d3.json("../data/data.json", function(error, result){
     }
   }
   // Draw bubble map of delays by stop
-  // util.sortByDelay(stopIds);
-  console.log(stopIds);
+  util.sortByDelay(stopIds);
   // drawDelayedStops(stopIds, "stops");
   // Draw arrival graphs for selected routes
   util.sortByDelay(routeIds);
-  graphs.drawDelays("#methodology", [30, 42], true);
+  // graphs.drawDelays("#methodology", [30, 42], true);
   for (var i = 0; i < selectRoutes.length; i++) {
     var selectBus = selectRoutes[i].split("-")[0];
     var selectDir = selectRoutes[i].split("-")[1];
@@ -77,8 +76,8 @@ d3.json("../data/data.json", function(error, result){
     graphs.drawDelays("#arrivals-"+selectRoutes[i], r.sample);
   }
   // drawDelayedRoutes(routes.slice(0, 21));
-  var copy = util.aggregateDelays(stopIds);
-  graphs.drawHist(copy, 'busiest-hist');
+  // var copy = util.aggregateDelays(stopIds);
+  // graphs.drawHist(copy, 'busiest-hist');
 });
 
 /* EVENT FUNCTIONS */
@@ -321,7 +320,12 @@ function showInfo(key, data, sd=null) {
   document.getElementById("late").innerHTML = innerHTML;
   // innerHTML = "At least 10 minutes delay: <span>" + Math.floor(data[key]["vlate"] / data[key]["length"] * 100) + "%</span>";
   // document.getElementById("vlate").innerHTML = innerHTML;
-  var summ = graphs.drawHist(data[key]["hist"], "hist");
+  var summ;
+  if (window.innerWidth <= 967) {
+      summ = graphs.drawHist(data[key]["hist"], "small");
+  } else {
+      summ = graphs.drawHist(data[key]["hist"], "regular");
+  }
   innerHTML = "So in this case, the busiest time slot was <b>" + util.getTimeSlot(summ[0]) + "-" + util.getTimeSlot(summ[0] + 1) + "</b>, which saw <b>" + summ[1] + "%</b> of delays on this stop or route.";
   document.getElementById("hist-sum").innerHTML = innerHTML;
 }
