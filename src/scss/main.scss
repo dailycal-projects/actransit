@@ -246,19 +246,22 @@
   }
 }
 
-@media (max-device-width: 600px) {
+@media (max-width: 600px) {
   #map-info {
     height: 480px;
   }
 
   #map {
     height: 480px;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   #info {
-    width: 100%;
+    width: 90%;
+    margin-right: 5%;
     padding: 18px;
-    margin-right: 0;
     height: 480px;
   }
 }
@@ -313,7 +316,7 @@ div.bar {
 
   .col-md-6 {
 
-    @media (min-device-width: 600px) {
+    @media (min-width: 600px) {
       .arrival-graph-left {
         float: right;
       }
@@ -321,28 +324,6 @@ div.bar {
         float: left;
       }
     }
-  }
-}
-
-#g-demo-box {
-  display: block;
-}
-
-#g-demo-small-box {
-  display: none;
-}
-
-@media (max-device-width: 600px) {
-  #g-demo-box {
-    display: none;
-  }
-
-  #g-demo-small-box {
-    display: block;
-  }
-
-  #g-bubble-map-box {
-    overflow: scroll;
   }
 }
 
