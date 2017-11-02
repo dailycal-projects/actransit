@@ -116,7 +116,7 @@
   display: block;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 12px;
+  margin-bottom: 4px;
   position: relative;
   text-align: center;
 
@@ -160,7 +160,6 @@
   height: 80px;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 12px;
   text-align: center;
   position: relative;
   display: table;
@@ -193,34 +192,6 @@
   }
 }
 
-#cover {
-  height: 600px;
-  left: 0;
-  right: 0;
-  width: 90%;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 200px;
-  position: absolute;
-  text-align: center;
-  background-color: #fff;
-  z-index: 3;
-}
-
-#cover p {
-  padding-top: 140px;
-  font-size: 24px;
-}
-
-#instr {
-  text-align: right;
-  width: 90%;
-  margin-top: 612px;
-  margin-left: auto;
-  margin-right: auto;
-  display: none;
-}
-
 #map-info {
   height: 600px;
 }
@@ -229,7 +200,7 @@
   height: 600px;
   left: 0;
   right: 0;
-  width: 90%;
+  width: 80%;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 200px;
@@ -244,7 +215,7 @@
 #info {
   width: 40%;
   height: 600px;
-  margin-right: 5%;
+  margin-right: 10%;
   display: none;
   position: absolute;
   right: 0;
@@ -264,11 +235,31 @@
   span {
     font-weight: bold;
   }
+
+  #hide-info {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin-bottom: 12px;
+    margin-right: 32px;
+    cursor: pointer;
+  }
 }
 
 @media (max-device-width: 600px) {
+  #map-info {
+    height: 480px;
+  }
+
+  #map {
+    height: 480px;
+  }
+
   #info {
     width: 100%;
+    padding: 18px;
+    margin-right: 0;
+    height: 480px;
   }
 }
 
@@ -317,24 +308,6 @@ div.bar {
   font-size: 16px;
 }
 
-// #methodology {
-//   margin: 1.618em auto;
-//   max-width: 600px;
-//   padding: 0;
-//
-//   .circ-num {
-//     display: inline-block;
-//     background-color: crimson;
-//     color: white;
-//     font-family: sans-serif;
-//     text-align: center;
-//     border-radius: 50%;
-//     height: 24px;
-//     width: 24px;
-//     margin: 4px 8px 4px 4px;
-//   }
-// }
-
 #arrivals {
   margin-bottom: 32px;
 
@@ -365,7 +338,7 @@ div.bar {
   }
 
   #g-demo-small-box {
-    display: none;
+    display: block;
   }
 
   #g-bubble-map-box {

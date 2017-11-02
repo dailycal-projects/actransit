@@ -75,6 +75,9 @@ d3.json("../data/data.json", function(error, result){
     var r = data[selectBus + "_" + util.routeMeta[selectBus][selectDir]];
     graphs.drawDelays("#arrivals-"+selectRoutes[i], r.sample);
   }
+  document.getElementById('hide-info').addEventListener('click', function() {
+    hideInfo();
+  });
   // drawDelayedRoutes(routes.slice(0, 21));
   // var copy = util.aggregateDelays(stopIds);
   // graphs.drawHist(copy, 'busiest-hist');
@@ -312,10 +315,14 @@ function showInfo(key, data, sd=null) {
     document.getElementById("stopId").style.display = "none";
     document.getElementById("stopName").innerHTML = "Route Information";
   }
-  var innerHTML = "Average Delay: <span>" + util.convertTime(data[key]["mean"]) + "</span>";
+  var innerHTML = "Average delay: <span>" + util.convertTime(data[key]["mean"]) + "</span>";
+  if (data[key]["mean"] <= 0) {
+    innerHTML = "Average delay: <span>Negligible</span>";
+  }
   document.getElementById("mean").innerHTML = innerHTML;
   // innerHTML = "Median Delay: <span>" + util.convertTime(data[key]["median"]) + "</span>";
   // document.getElementById("median").innerHTML = innerHTML;
+  console.log(data[key])
   innerHTML = "At least 5 minutes delay: <span>" + Math.floor(data[key]["late"] / data[key]["length"] * 100) + "%</span>";
   document.getElementById("late").innerHTML = innerHTML;
   // innerHTML = "At least 10 minutes delay: <span>" + Math.floor(data[key]["vlate"] / data[key]["length"] * 100) + "%</span>";
@@ -326,7 +333,7 @@ function showInfo(key, data, sd=null) {
   } else {
       summ = graphs.drawHist(data[key]["hist"], "regular");
   }
-  innerHTML = "So in this case, the busiest time slot was <b>" + util.getTimeSlot(summ[0]) + "-" + util.getTimeSlot(summ[0] + 1) + "</b>, which saw <b>" + summ[1] + "%</b> of delays on this stop or route.";
+  innerHTML = "The busiest time slot was <b>" + util.getTimeSlot(summ[0]) + "-" + util.getTimeSlot(summ[0] + 1) + "</b>, which saw <b>" + summ[1] + "%</b> of delays on this stop or route.";
   document.getElementById("hist-sum").innerHTML = innerHTML;
 }
 

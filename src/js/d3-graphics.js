@@ -20,9 +20,9 @@ exports.drawHist = function (dataset, option) {
 
   var margin = {
     top: 20,
-    right: 0,
+    right: 10,
     bottom: 20,
-    left: 40
+    left: 28
   };
   var width;
   var height;
@@ -77,7 +77,9 @@ exports.drawHist = function (dataset, option) {
   var yAxis = d3.axisLeft()
     .scale(yScale)
     .tickValues([100])
-    .tickFormat(Math.floor(max / total * 100) + "%");
+    .tickFormat(Math.floor(max / total * 100) + "%")
+    .tickSizeOuter([0])
+    .tickSizeInner([0]);
   svg.append("g")
     .attr("class", "y axis")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
@@ -146,7 +148,9 @@ exports.drawDelays = function (elementID, arrivalTimes, isDemo=false) {
     .domain([-30, 20])
     .range([0, w]);
   var xAxis = d3.axisBottom(xScale)
-    .ticks(5);
+    .ticks(5)
+    .tickSizeOuter(0)
+    .tickSizeInner(0);
   svg.append('g')
     .attr("class", "x axis")
     .attr("transform", "translate("+(-w/2)+",0)")
