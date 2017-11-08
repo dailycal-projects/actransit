@@ -29,7 +29,7 @@ for filename in glob.glob("stops/*.gpx"):
     stopLon = latlon[i2+1:i3]
     # print(stopLat, stopLon)
     f.close()
-    delay = json_data[stopId]['mean']
+    delay = float(json_data[stopId]['late'])/float(json_data[stopId]['length']) * 100
 
     features.append({
         'type': 'Feature',
