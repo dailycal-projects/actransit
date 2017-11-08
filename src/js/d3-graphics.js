@@ -27,7 +27,7 @@ exports.drawHist = function (dataset, option) {
   var width;
   var height;
   if (option === "small") {
-    width = 320;
+    width = 280;
     height = 140;
   } else {
     width = 450;
@@ -97,9 +97,14 @@ exports.drawHist = function (dataset, option) {
   return [maxi, Math.floor(max / total * 100)];
 }
 
-exports.drawDelays = function (elementID, arrivalTimes, isDemo=false) {
-  var width = 320; //400;
-  var height = 150;//180;
+exports.drawDelays = function (elementID, arrivalTimes, size='regular') {
+
+  var width = 400;
+  var height = 180;
+  if (size === 'small') {
+    width = 280;
+    height = 150;
+  }
   var margin = {
     top: 28,
     right: 12,
@@ -117,7 +122,7 @@ exports.drawDelays = function (elementID, arrivalTimes, isDemo=false) {
     .attr("transform", "translate(" + (margin.left + w/2) + "," + (margin.top + h) + ")");
 
   var rScale = d3.scaleLinear()
-    .domain([0, 50])
+    .domain([0, 40])
     .range([0, w/2])
 
   var arc = d3.arc()
@@ -136,8 +141,8 @@ exports.drawDelays = function (elementID, arrivalTimes, isDemo=false) {
       return arc(d);
     })
     .attr("fill", function(d) {
-      if (d <= 30) return "#bdbdbd";
-      if (d <= 35) return "#fec44f";
+      if (d <= 20) return "#bdbdbd";
+      if (d <= 25) return "#fec44f";
       else return "#d95f0e";
     })
     .attr("transform", function(d) {
@@ -145,7 +150,7 @@ exports.drawDelays = function (elementID, arrivalTimes, isDemo=false) {
     });
 
   var xScale = d3.scaleLinear()
-    .domain([-30, 20])
+    .domain([-20, 20])
     .range([0, w]);
   var xAxis = d3.axisBottom(xScale)
     .ticks(5)
@@ -160,6 +165,7 @@ exports.drawDelays = function (elementID, arrivalTimes, isDemo=false) {
     .attr('y', 30)
     .attr('text-anchor', 'middle')
     .attr('font-size', '12')
+    .attr('font-family', 'Lato, sans-serif')
     .text('Minutes off from prediction');
 
   var badge = "";

@@ -128,9 +128,13 @@ exports.convertTime = function (seconds) {
   }
 };
 
-exports.sortByDelay = function (list) {
+exports.sortByDelay = function (list, option='avg') {
   var sorted = list.sort(function(x, y){
-    return d3.descending(x.mean, y.mean);
+    if (option === 'avg') {
+      return d3.descending(x.mean, y.mean);
+    } else { // option === 'otp' (at least 5 min delay)
+      return d3.descending(x.late / x.length, y.late / y.length);
+    }
   });
 };
 

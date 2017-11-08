@@ -66,16 +66,28 @@ d3.json("../data/data.json", function(error, result){
     }
   }
   // Draw bubble map of delays by stop
+  util.sortByDelay(stopIds, 'otp');
+  for (var i = 0; i < stopIds.length; i++) {
+    console.log(stopIds[i].id + ' : ' + stopIds[i].late / stopIds[i].length);
+  }
+  console.log("asdflkasjdfkjaldfs");
   util.sortByDelay(stopIds);
+  for (var i = 0; i < stopIds.length; i++) {
+    console.log(stopIds[i].id + ' : ' + stopIds[i].late / stopIds[i].length);
+  }
   // drawDelayedStops(stopIds, "stops");
   // Draw arrival graphs for selected routes
   util.sortByDelay(routeIds);
-  // graphs.drawDelays("#methodology", [30, 42], true);
+  graphs.drawDelays("#methodology", [20, 32], true);
   for (var i = 0; i < selectRoutes.length; i++) {
     var selectBus = selectRoutes[i].split("-")[0];
     var selectDir = selectRoutes[i].split("-")[1];
     var r = data[selectBus + "_" + util.routeMeta[selectBus][selectDir]];
-    graphs.drawDelays("#arrivals-"+selectRoutes[i], r.sample);
+    if (window.innerWidth <= 600) {
+        graphs.drawDelays("#arrivals-"+selectRoutes[i], r.sample.slice(0, 50), 'small');
+    } else {
+        graphs.drawDelays("#arrivals-"+selectRoutes[i], r.sample.slice(0, 50), 'regular');
+    }
   }
   document.getElementById('hide-info').addEventListener('click', function() {
     hideInfo();
@@ -317,15 +329,14 @@ function showInfo(key, data, sd=null) {
     document.getElementById("stopId").style.display = "none";
     document.getElementById("stopName").innerHTML = "Route Information";
   }
-  var innerHTML = "Average delay: <span>" + util.convertTime(data[key]["mean"]) + "</span>";
-  if (data[key]["mean"] <= 0) {
-    innerHTML = "Average delay: <span>Negligible</span>";
-  }
-  document.getElementById("mean").innerHTML = innerHTML;
+  // var innerHTML = "Average delay: <span>" + util.convertTime(data[key]["mean"]) + "</span>";
+  // if (data[key]["mean"] <= 0) {
+  //   innerHTML = "Average delay: <span>Negligible</span>";
+  // }
+  // document.getElementById("mean").innerHTML = innerHTML;
   // innerHTML = "Median Delay: <span>" + util.convertTime(data[key]["median"]) + "</span>";
   // document.getElementById("median").innerHTML = innerHTML;
-  console.log(data[key])
-  innerHTML = "At least 5 minutes delay: <span>" + Math.floor(data[key]["late"] / data[key]["length"] * 100) + "%</span>";
+  var innerHTML = "At least 5 minutes delay: <span>" + Math.floor(data[key]["late"] / data[key]["length"] * 100) + "%</span>";
   document.getElementById("late").innerHTML = innerHTML;
   // innerHTML = "At least 10 minutes delay: <span>" + Math.floor(data[key]["vlate"] / data[key]["length"] * 100) + "%</span>";
   // document.getElementById("vlate").innerHTML = innerHTML;
