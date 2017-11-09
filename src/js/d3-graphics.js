@@ -135,14 +135,15 @@ exports.drawDelays = function (elementID, arrivalTimes, size='regular') {
     .data(arrivalTimes)
     .enter()
     .append("g");
+
   arcs.append("path")
     .attr("class", "arc")
     .attr("d", function(d) {
       return arc(d);
     })
     .attr("fill", function(d) {
-      if (d <= 20) return "#bdbdbd";
-      if (d <= 25) return "#fec44f";
+      if (d <= 20) return "#D3D3D3";
+      if (d <= 25) return "#D3D3D3";
       else return "#d95f0e";
     })
     .attr("transform", function(d) {
@@ -160,13 +161,13 @@ exports.drawDelays = function (elementID, arrivalTimes, size='regular') {
     .attr("class", "x axis")
     .attr("transform", "translate("+(-w/2)+",0)")
     .call(xAxis);
-  svg.append('text')
+  /*svg.append('text')
     .attr('x', 0)
     .attr('y', 30)
     .attr('text-anchor', 'middle')
     .attr('font-size', '12')
     .attr('font-family', 'Lato, sans-serif')
-    .text('Minutes off from prediction');
+    .text('Minutes off from prediction');*/
 
   var badge = "";
   if (elementID === '#arrivals-F-S') {
