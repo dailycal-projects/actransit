@@ -66,19 +66,22 @@ d3.json("../data/data.json", function(error, result){
     }
   }
   // Draw bubble map of delays by stop
+  console.log('stops by % delayed (by >= 5 min)');
   util.sortByDelay(stopIds, 'otp');
   for (var i = 0; i < stopIds.length; i++) {
-    console.log(stopIds[i].id + ' : ' + stopIds[i].late / stopIds[i].length);
+    var intersect = util.stopMeta[stopIds[i].id];
+    console.log(intersect +' ('+stopIds[i].id + '): ' + stopIds[i].late / stopIds[i].length);
   }
-  console.log("asdflkasjdfkjaldfs");
+  console.log('stops by avg delay');
   util.sortByDelay(stopIds);
   for (var i = 0; i < stopIds.length; i++) {
-    console.log(stopIds[i].id + ' : ' + stopIds[i].late / stopIds[i].length);
+    var intersect = util.stopMeta[stopIds[i].id];
+    console.log(intersect +' ('+stopIds[i].id + '): ' + stopIds[i].late / stopIds[i].length);
   }
   // drawDelayedStops(stopIds, "stops");
   // Draw arrival graphs for selected routes
   util.sortByDelay(routeIds);
-  graphs.drawDelays("#methodology", [20, 32], true);
+  // graphs.drawDelays("#methodology", [20, 32], true);
   for (var i = 0; i < selectRoutes.length; i++) {
     var selectBus = selectRoutes[i].split("-")[0];
     var selectDir = selectRoutes[i].split("-")[1];
