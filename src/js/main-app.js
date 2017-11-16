@@ -66,18 +66,18 @@ d3.json("../data/data.json", function(error, result){
     }
   }
   // Draw bubble map of delays by stop
-  console.log('stops by % delayed (by >= 5 min)');
-  util.sortByDelay(stopIds, 'otp');
-  for (var i = 0; i < stopIds.length; i++) {
-    var intersect = util.stopMeta[stopIds[i].id];
-    console.log(intersect +' ('+stopIds[i].id + '): ' + stopIds[i].late / stopIds[i].length);
-  }
-  console.log('stops by avg delay');
-  util.sortByDelay(stopIds);
-  for (var i = 0; i < stopIds.length; i++) {
-    var intersect = util.stopMeta[stopIds[i].id];
-    console.log(intersect +' ('+stopIds[i].id + '): ' + stopIds[i].late / stopIds[i].length);
-  }
+  // console.log('stops by % delayed (by >= 5 min)');
+  // util.sortByDelay(stopIds, 'otp');
+  // for (var i = 0; i < stopIds.length; i++) {
+  //   var intersect = util.stopMeta[stopIds[i].id];
+  //   console.log(intersect +' ('+stopIds[i].id + '): ' + stopIds[i].late / stopIds[i].length);
+  // }
+  // console.log('stops by avg delay');
+  // util.sortByDelay(stopIds);
+  // for (var i = 0; i < stopIds.length; i++) {
+  //   var intersect = util.stopMeta[stopIds[i].id];
+  //   console.log(intersect +' ('+stopIds[i].id + '): ' + stopIds[i].late / stopIds[i].length);
+  // }
   // drawDelayedStops(stopIds, "stops");
   // Draw arrival graphs for selected routes
   util.sortByDelay(routeIds);
@@ -87,10 +87,17 @@ d3.json("../data/data.json", function(error, result){
     var selectDir = selectRoutes[i].split("-")[1];
     var r = data[selectBus + "_" + util.routeMeta[selectBus][selectDir]];
     if (window.innerWidth <= 600) {
-        graphs.drawDelays("#arrivals-"+selectRoutes[i], r.sample.slice(0, 50), 'small');
+        graphs.drawDelays("#arrivals-"+selectRoutes[i], r.sample, 'small');
     } else {
-        graphs.drawDelays("#arrivals-"+selectRoutes[i], r.sample.slice(0, 50), 'regular');
+        graphs.drawDelays("#arrivals-"+selectRoutes[i], r.sample, 'regular');
     }
+    var tmp = 0;
+    for (var j = 0; j < r.sample.length; j++) {
+      if (r.sample[j] >= 25) {
+        tmp += 1;
+      }
+    }
+    console.log(selectRoutes[i] + ": " + tmp);
   }
   document.getElementById('hide-info').addEventListener('click', function() {
     hideInfo();

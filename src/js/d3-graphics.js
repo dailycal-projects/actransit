@@ -182,10 +182,10 @@ exports.drawDelays = function (elementID, arrivalTimes, size='regular') {
     badge = '<h2 class="badge badge-18">18</h2><h2 class="db">Albany</h2>';
   } else if (elementID === '#arrivals-18-N') {
     badge = '<h2 class="badge badge-18">18</h2><h2 class="db">Lake Merritt BART</h2>';
-  } else if (elementID === '#arrivals-36-S') {
-    badge = '<h2 class="badge badge-36">36</h2><h2 class="db">West Oakland BART</h2>';
-  } else if (elementID === '#arrivals-36-N') {
-    badge = '<h2 class="badge badge-36">36</h2><h2 class="db">UC Campus</h2>';
+  } else if (elementID === '#arrivals-79-S') {
+    badge = '<h2 class="badge badge-79">79</h2><h2 class="db">Rockridge BART</h2>';
+  } else if (elementID === '#arrivals-79-N') {
+    badge = '<h2 class="badge badge-79">79</h2><h2 class="db">El Cerrito Plaza BART</h2>';
   }
   svg.append('foreignObject')
     .attr('class','svg-fo')
