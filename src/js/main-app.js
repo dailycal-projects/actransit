@@ -45,7 +45,7 @@ var active = null; /* active feature */
 var hover = null; /* hover feature */
 var vectorLayers = []; /* layers of OpenLayer Vector objects */
 /* Selected routes for demoing */
-var selectRoutes = ['51B-S', '51B-N', '36-S', '36-N', '18-S', '18-N', 'F-S', 'F-N', '6-S', '6-N','79-S', '79-N'];
+var selectRoutes = ['6-S','6-N','7-S','7-N','18-S','18-N','36-S','36-N','51B-S','51B-N','52-S','52-N','65-S','67-S','79-S','79-N','88-S','88-N','F-S','F-N'];
 /* Load delay data from DATA.JSON, update stopIds and routeIds */
 d3.json("../data/data.json", function(error, result){
   data = result;
@@ -86,11 +86,8 @@ d3.json("../data/data.json", function(error, result){
     var selectBus = selectRoutes[i].split("-")[0];
     var selectDir = selectRoutes[i].split("-")[1];
     var r = data[selectBus + "_" + util.routeMeta[selectBus][selectDir]];
-    if (window.innerWidth <= 600) {
-        graphs.drawDelays("#arrivals-"+selectRoutes[i], r.sample, 'small');
-    } else {
-        graphs.drawDelays("#arrivals-"+selectRoutes[i], r.sample, 'regular');
-    }
+    console.log(selectBus + "_" + util.routeMeta[selectBus][selectDir]);
+    graphs.drawDelays("#arrivals-"+selectRoutes[i], r.sample, 'regular');
     var tmp = 0;
     for (var j = 0; j < r.sample.length; j++) {
       if (r.sample[j] >= 25) {

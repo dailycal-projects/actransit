@@ -1,16 +1,6 @@
 import os, glob
 import json
 
-# class Bubble():
-#     def __init__(self, x, y, area):
-#         self.x = x
-#         self.y = y
-#         self.area = area
-#
-#     @property
-#     def __geo_interface__(self):
-#         return {'type'}
-
 data = {}
 json_data = json.load(open('data.json'))
 max_delay = 0

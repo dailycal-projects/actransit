@@ -2,7 +2,7 @@ const d3 = require('d3');
 exports.routeMeta = {
   '6': {'N': 'Berkeley BART', 'S': 'Downtown Oakland', 'color': '#006DB8', 'proj': [-122.261943, 37.866976]},
   '7': {'N': 'Berkeley BART', 'S': 'E C Del Norte BART', 'color': '#75C695', 'proj': [-122.266520, 37.873903]},
-  '12': {'N': 'Oakland Amtrak', 'S': 'Westbrae - Berkeley', 'color': '#85D2DD', 'proj': [-122.268154, 37.862520]},
+  // '12': {'N': 'Oakland Amtrak', 'S': 'Westbrae - Berkeley', 'color': '#85D2DD', 'proj': [-122.268154, 37.862520]},
   '18': {'N': 'Lake Meritt BART', 'S': 'Albany', 'color': '#8D6538', 'proj': [-122.267477, 37.866868]},
   '36': {'N': 'UC Campus', 'S': 'West Oakland BART', 'color': '#C4A2CB', 'proj': [-122.261340, 37.866013]},
   '51B': {'N': 'Berkeley Amtrak', 'S': 'Rockridge BART', 'color': '#008B59', 'proj': [-122.261276, 37.867495]},
