@@ -47,62 +47,61 @@ var vectorLayers = []; /* layers of OpenLayer Vector objects */
 /* Selected routes for demoing */
 var selectRoutes = ['6-S','6-N','7-S','7-N','18-S','18-N','36-S','36-N','51B-S','51B-N','52-S','52-N','65-S','67-S','79-S','79-N','88-S','88-N','F-S','F-N'];
 /* Load delay data from DATA.JSON, update stopIds and routeIds */
-d3.json("../data/data.json", function(error, result){
-  data = result;
-  var keys = Object.keys(data);
-  for (var i = 0; i < keys.length; i++) {
-    if (!isNaN(keys[i])) {
-      var copy = jQuery.extend({}, data[keys[i]]);
-      copy.id = keys[i];
-      stopIds.push(copy);
-      continue;
-    }
-    var split = keys[i].split("_");
-    if (split.length === 2) {
-      var copy = jQuery.extend({}, data[keys[i]]);
-      copy.id = keys[i];
-      routeIds.push(copy);
-      continue;
+
+var data = require('../data/data.json');
+var keys = Object.keys(data);
+for (var i = 0; i < keys.length; i++) {
+  if (!isNaN(keys[i])) {
+    var copy = jQuery.extend({}, data[keys[i]]);
+    copy.id = keys[i];
+    stopIds.push(copy);
+    continue;
+  }
+  var split = keys[i].split("_");
+  if (split.length === 2) {
+    var copy = jQuery.extend({}, data[keys[i]]);
+    copy.id = keys[i];
+    routeIds.push(copy);
+    continue;
+  }
+}
+// Draw bubble map of delays by stop
+// console.log('stops by % delayed (by >= 5 min)');
+// util.sortByDelay(stopIds, 'otp');
+// for (var i = 0; i < stopIds.length; i++) {
+//   var intersect = util.stopMeta[stopIds[i].id];
+//   console.log(intersect +' ('+stopIds[i].id + '): ' + stopIds[i].late / stopIds[i].length);
+// }
+// console.log('stops by avg delay');
+// util.sortByDelay(stopIds);
+// for (var i = 0; i < stopIds.length; i++) {
+//   var intersect = util.stopMeta[stopIds[i].id];
+//   console.log(intersect +' ('+stopIds[i].id + '): ' + stopIds[i].late / stopIds[i].length);
+// }
+// drawDelayedStops(stopIds, "stops");
+// Draw arrival graphs for selected routes
+util.sortByDelay(routeIds);
+// graphs.drawDelays("#methodology", [20, 32], true);
+for (var i = 0; i < selectRoutes.length; i++) {
+  var selectBus = selectRoutes[i].split("-")[0];
+  var selectDir = selectRoutes[i].split("-")[1];
+  var r = data[selectBus + "_" + util.routeMeta[selectBus][selectDir]];
+  console.log(selectBus + "_" + util.routeMeta[selectBus][selectDir]);
+  graphs.drawDelays("#arrivals-"+selectRoutes[i], r.sample, 'regular');
+  var tmp = 0;
+  for (var j = 0; j < r.sample.length; j++) {
+    if (r.sample[j] >= 25) {
+      tmp += 1;
     }
   }
-  // Draw bubble map of delays by stop
-  // console.log('stops by % delayed (by >= 5 min)');
-  // util.sortByDelay(stopIds, 'otp');
-  // for (var i = 0; i < stopIds.length; i++) {
-  //   var intersect = util.stopMeta[stopIds[i].id];
-  //   console.log(intersect +' ('+stopIds[i].id + '): ' + stopIds[i].late / stopIds[i].length);
-  // }
-  // console.log('stops by avg delay');
-  // util.sortByDelay(stopIds);
-  // for (var i = 0; i < stopIds.length; i++) {
-  //   var intersect = util.stopMeta[stopIds[i].id];
-  //   console.log(intersect +' ('+stopIds[i].id + '): ' + stopIds[i].late / stopIds[i].length);
-  // }
-  // drawDelayedStops(stopIds, "stops");
-  // Draw arrival graphs for selected routes
-  util.sortByDelay(routeIds);
-  // graphs.drawDelays("#methodology", [20, 32], true);
-  for (var i = 0; i < selectRoutes.length; i++) {
-    var selectBus = selectRoutes[i].split("-")[0];
-    var selectDir = selectRoutes[i].split("-")[1];
-    var r = data[selectBus + "_" + util.routeMeta[selectBus][selectDir]];
-    console.log(selectBus + "_" + util.routeMeta[selectBus][selectDir]);
-    graphs.drawDelays("#arrivals-"+selectRoutes[i], r.sample, 'regular');
-    var tmp = 0;
-    for (var j = 0; j < r.sample.length; j++) {
-      if (r.sample[j] >= 25) {
-        tmp += 1;
-      }
-    }
-    console.log(selectRoutes[i] + ": " + tmp);
-  }
-  document.getElementById('hide-info').addEventListener('click', function() {
-    hideInfo();
-  });
-  // drawDelayedRoutes(routes.slice(0, 21));
-  // var copy = util.aggregateDelays(stopIds);
-  // graphs.drawHist(copy, 'busiest-hist');
+  console.log(selectRoutes[i] + ": " + tmp);
+}
+document.getElementById('hide-info').addEventListener('click', function() {
+  hideInfo();
 });
+// drawDelayedRoutes(routes.slice(0, 21));
+// var copy = util.aggregateDelays(stopIds);
+// graphs.drawHist(copy, 'busiest-hist');
 
 /* EVENT FUNCTIONS */
 function toggleRoute(line) {
