@@ -29,7 +29,12 @@ figure {
 
   img {
     width: 90%;
-    max-width: 320px;
+    max-width: 250px;
+    margin: 0 auto;
+  }
+
+  figcaption {
+    max-width: 600px;
     margin: 0 auto;
   }
 }
