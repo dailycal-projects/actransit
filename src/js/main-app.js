@@ -111,6 +111,7 @@ function toggleRoute(line) {
   }
   /* Fade other routes */
   util.selectOption(line);
+  util.selectOption('none', true);
 
   /* Show direction options */
   var dirs = document.querySelectorAll('#dirs .dir');

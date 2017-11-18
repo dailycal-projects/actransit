@@ -24,15 +24,13 @@ exports.drawHist = function (dataset, option) {
     bottom: 20,
     left: 28
   };
-  var width;
-  var height;
-  if (option === "small") {
-    width = 280;
-    height = 140;
-  } else {
-    width = 450;
-    height = 140;
+  var width = window.innerWidth * 0.35;
+  var height = 140;
+  if (window.innerWidth <= 600) {
+    width = window.innerWidth * 0.85;
+    height = 120;
   }
+
   var w = width - margin.left - margin.right; //440
   var h = height - margin.top - margin.bottom; // 100
   var barPadding = 1;
@@ -85,13 +83,11 @@ exports.drawHist = function (dataset, option) {
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
     .call(yAxis);
 
-  if (option === 'small') {
-    var hours = document.querySelectorAll('.time-axis text');
-    for (var i = 0; i < hours.length; i++) {
-      var h = hours[i].innerHTML;
-      if (h.slice(0, h.length - 2) % 2 === 0) {
-        hours[i].style = 'fill: none';
-      }
+  var hours = document.querySelectorAll('.time-axis text');
+  for (var i = 0; i < hours.length; i++) {
+    var h = hours[i].innerHTML;
+    if (h.slice(0, h.length - 2) % 2 === 0) {
+      hours[i].style = 'fill: none';
     }
   }
   return [maxi, Math.floor(max / total * 100)];

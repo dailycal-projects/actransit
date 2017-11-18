@@ -24,6 +24,16 @@
 
 @import 'ol';
 
+figure {
+  text-align: center;
+
+  img {
+    width: 90%;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+}
+
 /* Colors */
 .badge-6 {
   background-color: #006DB8;
@@ -60,6 +70,7 @@
 .badge-67 {
   background-color: #FECD08;
   fill: #FECD08;
+  color: #333 !important;
 }
 .badge-79 {
   background-color: #00B1B0;
@@ -246,8 +257,24 @@
   }
 }
 
+.svg-container {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    padding-bottom: 100%; /* aspect ratio */
+    vertical-align: top;
+    overflow: hidden;
+}
+.svg-content-responsive {
+    display: inline-block;
+    position: absolute;
+    top: 10px;
+    left: 0;
+}
+
 @media (max-width: 600px) {
   #map-info {
+    margin-top: 6px;
     height: 480px;
   }
 
@@ -261,7 +288,7 @@
   #info {
     width: 90%;
     margin-right: 5%;
-    padding: 18px;
+    padding: 6px;
     height: 480px;
   }
 }
@@ -278,8 +305,8 @@
   margin-bottom: 32px;
 }
 
-#hist {
-  margin-top: 20px;
+#hist-sum {
+  margin-bottom: 12px;
 }
 
 #additional {
