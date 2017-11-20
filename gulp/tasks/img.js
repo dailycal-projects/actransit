@@ -9,8 +9,8 @@ module.exports = () => {
   glob('./src/images/**/*.jpg', (er, files) => {
     if (files.length > 0) images = true;
 
-    return gulp.src('./src/images/**/*.jpg')
-      .pipe(gulpif(images, responsive({
+    return gulp.src('./src/images/**/*')
+      /*.pipe(gulpif(images, responsive({
         '*': [{
           width: 400,
           rename: { suffix: '-400' },
@@ -30,7 +30,7 @@ module.exports = () => {
         withMetadata: false,
         withoutEnlargement: true,
         errorOnEnlargement: false,
-      })))
+      })))*/
       .pipe(gulp.dest('./dist/images'));
   });
 }

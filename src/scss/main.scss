@@ -21,6 +21,7 @@
 @import 'share';
 @import 'credits';
 @import 'graphics';
+@import 'nerd-box';
 
 @import 'ol';
 
@@ -29,7 +30,12 @@ figure.no-gutters-phone {
 
   img {
     width: 90%;
-    max-width: 320px;
+    max-width: 250px;
+    margin: 0 auto;
+  }
+
+  figcaption {
+    max-width: 600px;
     margin: 0 auto;
   }
 

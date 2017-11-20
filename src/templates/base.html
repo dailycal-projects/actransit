@@ -8,6 +8,15 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2568634-2"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'UA-2568634-2');
+        </script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
         <meta charset="utf-8">
@@ -35,8 +44,12 @@
             <div id="global-header">
                 <div id="global-branding">
                   <div class="navbar-dc-logo">
-                   <a class="navbar-brand" href="http://www.dailycal.org/" title="The Daily Californian" target="_top">
-                     the Daily Californian
+                   <a href="http://www.dailycal.org/" title="The Daily Californian" target="_top">
+                   {% if env == 'production' %}
+                   <img class="navbar-brand" src="images/masthead.png" />
+                   {% else %}
+                   <img class="navbar-brand" src="../../images/masthead.png" />
+                   {% endif %}
                    </a>
                   </div>
                 </div>
