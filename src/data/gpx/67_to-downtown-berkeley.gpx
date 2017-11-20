@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<gpx version="1.1" creator="GPS Visualizer http://www.gpsvisualizer.com/" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+<wpt lat='37.87643' lon='-122.2667199'>
+	<name>54230</name>
+	<desc><![CDATA[54230]]></desc>
+	<sym>Dot</sym>
+	<type><![CDATA[Dot]]></type>
+</wpt>
+<wpt lat='37.87383' lon='-122.2663799'>
+	<name>51073</name>
+	<desc><![CDATA[51073]]></desc>
+	<sym>Dot</sym>
+	<type><![CDATA[Dot]]></type>
+</wpt>
+<wpt lat='37.87217' lon='-122.2661999'>
+	<name>56521</name>
+	<desc><![CDATA[56521]]></desc>
+	<sym>Dot</sym>
+	<type><![CDATA[Dot]]></type>
+</wpt>
+<wpt lat='37.8695399' lon='-122.26746'>
+	<name>51538</name>
+	<desc><![CDATA[51538]]></desc>
+	<sym>Dot</sym>
+	<type><![CDATA[Dot]]></type>
+</wpt>
+<trk>
+  <name>67_To Downtown Berkeley</name>
+  <desc>67_To Downtown Berkeley</desc>
+  <trkseg>
+    <trkpt lat="37.88212" lon="-122.26733"></trkpt>
+    <trkpt lat="37.88212" lon="-122.26724"></trkpt>
+    <trkpt lat="37.88052" lon="-122.26705"></trkpt>
+    <trkpt lat="37.88033" lon="-122.26703"></trkpt>
+    <trkpt lat="37.87963" lon="-122.26696"></trkpt>
+    <trkpt lat="37.87916" lon="-122.2669"></trkpt>
+    <trkpt lat="37.87871" lon="-122.26685"></trkpt>
+    <trkpt lat="37.87847" lon="-122.26684"></trkpt>
+    <trkpt lat="37.87845" lon="-122.26684"></trkpt>
+    <trkpt lat="37.87764" lon="-122.26675"></trkpt>
+    <trkpt lat="37.87688" lon="-122.26667"></trkpt>
+    <trkpt lat="37.87643" lon="-122.26662"></trkpt>
+    <trkpt lat="37.87564" lon="-122.26653"></trkpt>
+    <trkpt lat="37.87505" lon="-122.26646"></trkpt>
+    <trkpt lat="37.87439" lon="-122.26634"></trkpt>
+    <trkpt lat="37.87431" lon="-122.26638"></trkpt>
+    <trkpt lat="37.87418" lon="-122.26636"></trkpt>
+    <trkpt lat="37.87413" lon="-122.26636"></trkpt>
+    <trkpt lat="37.87383" lon="-122.26633"></trkpt>
+    <trkpt lat="37.87366" lon="-122.26631"></trkpt>
+    <trkpt lat="37.87335" lon="-122.26628"></trkpt>
+    <trkpt lat="37.87247" lon="-122.26616"></trkpt>
+    <trkpt lat="37.87238" lon="-122.26616"></trkpt>
+    <trkpt lat="37.87218" lon="-122.26613"></trkpt>
+    <trkpt lat="37.87146" lon="-122.26605"></trkpt>
+    <trkpt lat="37.87135" lon="-122.26604"></trkpt>
+    <trkpt lat="37.87094" lon="-122.266"></trkpt>
+    <trkpt lat="37.87058" lon="-122.26596"></trkpt>
+    <trkpt lat="37.87017" lon="-122.26591"></trkpt>
+    <trkpt lat="37.86976" lon="-122.26587"></trkpt>
+    <trkpt lat="37.86965" lon="-122.26588"></trkpt>
+    <trkpt lat="37.86965" lon="-122.26597"></trkpt>
+    <trkpt lat="37.86964" lon="-122.26606"></trkpt>
+    <trkpt lat="37.86964" lon="-122.26614"></trkpt>
+    <trkpt lat="37.86961" lon="-122.2663"></trkpt>
+    <trkpt lat="37.86947" lon="-122.26745"></trkpt>
+    <trkpt lat="37.86954" lon="-122.26746"></trkpt>
+  </trkseg>
+</trk>
+</gpx>

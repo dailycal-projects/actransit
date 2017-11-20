@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<gpx version="1.1" creator="GPS Visualizer http://www.gpsvisualizer.com/" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+<wpt lat='37.8693199' lon='-122.26882'>
+	<name>51687</name>
+	<desc><![CDATA[51687]]></desc>
+	<sym>Dot</sym>
+	<type><![CDATA[Dot]]></type>
+</wpt>
+<trk>
+  <name>88_Lake Merritt BART</name>
+  <desc>88_Lake Merritt BART</desc>
+  <trkseg>
+    <trkpt lat="37.86927" lon="-122.26881"></trkpt>
+    <trkpt lat="37.86921" lon="-122.26929"></trkpt>
+    <trkpt lat="37.86906" lon="-122.27045"></trkpt>
+    <trkpt lat="37.86903" lon="-122.27074"></trkpt>
+    <trkpt lat="37.86899" lon="-122.27105"></trkpt>
+    <trkpt lat="37.86896" lon="-122.27132"></trkpt>
+    <trkpt lat="37.8689" lon="-122.27184"></trkpt>
+    <trkpt lat="37.86886" lon="-122.27211"></trkpt>
+    <trkpt lat="37.86881" lon="-122.27252"></trkpt>
+    <trkpt lat="37.86879" lon="-122.27269"></trkpt>
+    <trkpt lat="37.86879" lon="-122.27269"></trkpt>
+    <trkpt lat="37.86915" lon="-122.27272"></trkpt>
+    <trkpt lat="37.86969" lon="-122.27279"></trkpt>
+    <trkpt lat="37.87051" lon="-122.27289"></trkpt>
+    <trkpt lat="37.87052" lon="-122.27289"></trkpt>
+    <trkpt lat="37.87059" lon="-122.27289"></trkpt>
+    <trkpt lat="37.87067" lon="-122.2729"></trkpt>
+    <trkpt lat="37.87092" lon="-122.27293"></trkpt>
+    <trkpt lat="37.87111" lon="-122.27296"></trkpt>
+    <trkpt lat="37.87151" lon="-122.27302"></trkpt>
+    <trkpt lat="37.87151" lon="-122.27302"></trkpt>
+    <trkpt lat="37.87161" lon="-122.27303"></trkpt>
+    <trkpt lat="37.8714" lon="-122.27466"></trkpt>
+    <trkpt lat="37.87132" lon="-122.27527"></trkpt>
+    <trkpt lat="37.87104" lon="-122.27753"></trkpt>
+    <trkpt lat="37.8709" lon="-122.27856"></trkpt>
+    <trkpt lat="37.87082" lon="-122.27924"></trkpt>
+    <trkpt lat="37.87074" lon="-122.27977"></trkpt>
+    <trkpt lat="37.87068" lon="-122.28027"></trkpt>
+  </trkseg>
+</trk>
+</gpx>

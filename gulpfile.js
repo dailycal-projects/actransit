@@ -14,7 +14,6 @@ const gulp = require('./gulp')([
   'dist',
   'html',
   'img',
-  
 ]);
 
 /* Add secure keys to environment */

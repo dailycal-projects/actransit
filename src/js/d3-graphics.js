@@ -25,7 +25,7 @@ exports.drawHist = function (dataset) {
     left: 28
   };
   var width = window.innerWidth * 0.35;
-  var height = 140;
+  var height = 200;
   if (window.innerWidth <= 600) {
     width = window.innerWidth * 0.85;
     height = 120;
@@ -59,7 +59,7 @@ exports.drawHist = function (dataset) {
       }
       return Math.floor(d / max * h);
     })
-    .attr("fill", "crimson");
+    .attr("fill", "#F38146");
   tickRange.push(w + margin.left);
   var xScale = d3.scaleOrdinal()
     .domain(times)

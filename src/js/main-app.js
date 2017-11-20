@@ -274,10 +274,20 @@ var map = new ol_Map({
   view: view
 });
 
+function slugify(text)
+{
+  return text.toString().toLowerCase()
+    .replace(/\s+/g, '-')           // Replace spaces with -
+    .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
+    .replace(/\-\-+/g, '-')         // Replace multiple - with single -
+    .replace(/^-+/, '')             // Trim - from start of text
+    .replace(/-+$/, '');            // Trim - from end of text
+}
+
 /* To ensure name closure, pass the route and
    its info as parameters into this function. */
 function createVector(r, d) {
-  var gpxUrl = '../data/gpx/'+r+'_'+d+'.gpx';
+  var gpxUrl = 'data/gpx/'+slugify(r+'_'+d)+'.gpx';
   var vector = new ol_layer_Vector({
     source: new ol_source_Vector({
       url: gpxUrl,
@@ -381,7 +391,7 @@ function showInfo(key, data, sd=null) {
 
   histData = data[key]["hist"];
   var summ = graphs.drawHist(histData);
-  innerHTML = "The busiest time slot was <b>" + util.getTimeSlot(summ[0]) + "-" + util.getTimeSlot(summ[0] + 1) + "</b>, which saw <b>" + summ[1] + "%</b> of delays on this stop or route.";
+  innerHTML = "The busiest time slot was <b>" + util.getTimeSlot(summ[0]) + " to " + util.getTimeSlot(summ[0] + 1) + "</b>, which saw <b>" + summ[1] + "%</b> of delays.";
   document.getElementById("hist-sum").innerHTML = innerHTML;
 }
 
