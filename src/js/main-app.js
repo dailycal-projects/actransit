@@ -35,6 +35,7 @@ const ol_format_GPX = require('ol/format/gpx').default;
 
 /* GLOBAL VARIABLES TO KEEP TRACK OF */
 var data; /* fetch json asynchronously */
+var histData; /* histogram data */
 var routeIds = []; /* routes by descending order */
 var stopIds = []; /* stopsf by descending order */
 var routeKeys = Object.keys(util.routeMeta);
@@ -99,10 +100,9 @@ d3.json("../data/data.json", function(error, result){
   document.getElementById('hide-info').addEventListener('click', function() {
     hideInfo();
   });
-  // drawDelayedRoutes(routes.slice(0, 21));
-  // var copy = util.aggregateDelays(stopIds);
-  // graphs.drawHist(copy, 'busiest-hist');
 });
+
+console.log(Object.keys(util.stopMeta).length);
 
 /* EVENT FUNCTIONS */
 function toggleRoute(line) {
@@ -136,7 +136,6 @@ function toggleDir(direction, index, proj) {
   vectorLayers[index].setVisible(true);
 
   dir = direction;
-  console.log(dir);
   showInfo(bus + "_" + dir, data);
   view.animate({
     center: proj,
@@ -170,12 +169,43 @@ for (var i = 0; i < routeKeys.length; i++) {
 }
 
 /**
+ * function applies greyscale to every pixel in canvas
+ * source: https://medium.com/@xavierpenya/openlayers-3-osm-map-in-grayscale-5ced3a3ed942
+ */
+function greyscale(context) {
+  var canvas = context.canvas;
+  var width = canvas.width;
+  var height = canvas.height;
+  var imageData = context.getImageData(0, 0, width, height);
+  var data = imageData.data;
+  for (i=0; i<data.length; i += 4) {
+    var r = data[i];
+    var g = data[i + 1];
+    var b = data[i + 2];
+    // CIE luminance for the RGB
+    var v = 0.2126 * r + 0.7152 * g + 0.0722 * b;
+    // Show white color instead of black color while loading new tiles:
+    if (v === 0.0) v=255.0;
+    data[i+0] = v; // Red
+    data[i+1] = v; // Green
+    data[i+2] = v; // Blue
+    data[i+3] = 255; // Alpha
+  }
+  context.putImageData(imageData,0,0);
+}
+
+/**
  * OPENLAYERS MAP SETTINGS. Generate map tiles in RASTER,
  * place bus routes (in MultiLineString) and stops (in Point)
  * on the map based on their bus route (and coinciding color).
  */
+
 var raster = new ol_layer_Tile({
   source: new ol_source_OSM(),
+});
+// apply greyscale on raster tiles
+raster.on('postcompose', function(event) {
+ greyscale(event.context);
 });
 
 var style = {};
@@ -348,15 +378,24 @@ function showInfo(key, data, sd=null) {
   document.getElementById("late").innerHTML = innerHTML;
   // innerHTML = "At least 10 minutes delay: <span>" + Math.floor(data[key]["vlate"] / data[key]["length"] * 100) + "%</span>";
   // document.getElementById("vlate").innerHTML = innerHTML;
-  var summ;
-  if (window.innerWidth <= 967) {
-      summ = graphs.drawHist(data[key]["hist"], "small");
-  } else {
-      summ = graphs.drawHist(data[key]["hist"], "regular");
-  }
+
+  histData = data[key]["hist"];
+  var summ = graphs.drawHist(histData);
   innerHTML = "The busiest time slot was <b>" + util.getTimeSlot(summ[0]) + "-" + util.getTimeSlot(summ[0] + 1) + "</b>, which saw <b>" + summ[1] + "%</b> of delays on this stop or route.";
   document.getElementById("hist-sum").innerHTML = innerHTML;
 }
+
+var timer;
+function resizedw(){
+  console.log('resized');
+  graphs.drawHist(histData);
+}
+window.onresize = function() {
+    clearTimeout(timer);
+    timer = setTimeout(function() {
+        resizedw();
+    }, 100);
+};
 
 function hideInfo() {
   document.getElementById("info").style.display = "none";

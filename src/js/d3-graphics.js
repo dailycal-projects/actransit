@@ -9,8 +9,8 @@ var times = ['5am','6am','7am','8am','9am','10am','11am','12pm',
  * we are looking at each feature on the map or the final
  * summary at the bottom of page.
  */
-exports.drawHist = function (dataset, option) {
-  d3.select("#info svg").remove();
+exports.drawHist = function (dataset) {
+  d3.select("#info svg").remove(); // if a previously drawn hist exists, delete it
   var max = d3.max(dataset);
   var maxi = 0;
   var total = 0;
