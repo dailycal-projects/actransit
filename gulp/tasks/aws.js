@@ -41,14 +41,8 @@ module.exports = (cb) => {
     /.*images.*$/, // images
     /.*\.json$/, // application data
     /.*\.csv$/, // application data
+    /.*data.*$/, // rip my sanity
   ];
-
-  /*const cloudFrontConfig = {
-    distribution: 'E3V6OHE700RHMR',
-    accessKeyId: process.env.awsAccessKey,
-    secretAccessKey: process.env.awsSecretKey,
-    indexRootPath: true,
-  };*/
 
   return gulp.src('./dist/**/*')
     .pipe(gulpIf(() => {
