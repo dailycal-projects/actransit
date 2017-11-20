@@ -30,7 +30,7 @@ figure.no-gutters-phone {
 
   img {
     width: 90%;
-    max-width: 250px;
+    max-width: 320px;
     margin: 0 auto;
   }
 
@@ -121,6 +121,7 @@ figure.no-gutters-phone {
   border-width: 2px;
   border-color: #333;
   border-style: solid;
+  border-radius: 16px;
   background-color: #333;
   padding-left: 8px;
   padding-right: 8px;
@@ -193,7 +194,6 @@ figure.no-gutters-phone {
 
   .db {
     font-size: 18px;
-    // border-radius: 12px;
     border-width: 3px;
     border-style: solid;
     border-color: #333;
