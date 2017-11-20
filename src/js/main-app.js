@@ -274,10 +274,20 @@ var map = new ol_Map({
   view: view
 });
 
+function slugify(text)
+{
+  return text.toString().toLowerCase()
+    .replace(/\s+/g, '-')           // Replace spaces with -
+    .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
+    .replace(/\-\-+/g, '-')         // Replace multiple - with single -
+    .replace(/^-+/, '')             // Trim - from start of text
+    .replace(/-+$/, '');            // Trim - from end of text
+}
+
 /* To ensure name closure, pass the route and
    its info as parameters into this function. */
 function createVector(r, d) {
-  var gpxUrl = '../data/gpx/'+r+'_'+d+'.gpx';
+  var gpxUrl = 'data/gpx/'+slugify(r+'_'+d)+'.gpx';
   var vector = new ol_layer_Vector({
     source: new ol_source_Vector({
       url: gpxUrl,
