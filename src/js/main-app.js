@@ -95,22 +95,16 @@ for (var i = 0; i < selectRoutes.length; i++) {
       tmp += 1;
     }
   }
-<<<<<<< HEAD
-  document.getElementById('hide-info').addEventListener('click', function() {
-    hideInfo();
-  });
-=======
-  console.log(selectRoutes[i] + ": " + tmp);
 }
+
 document.getElementById('hide-info').addEventListener('click', function() {
   hideInfo();
->>>>>>> 29a96bed109d89dec47a9dc886c586489318f908
 });
 // drawDelayedRoutes(routes.slice(0, 21));
 // var copy = util.aggregateDelays(stopIds);
 // graphs.drawHist(copy, 'busiest-hist');
 
-console.log(Object.keys(util.stopMeta).length);
+// console.log(Object.keys(util.stopMeta).length);
 
 /* EVENT FUNCTIONS */
 function toggleRoute(line) {
@@ -128,7 +122,6 @@ function toggleRoute(line) {
   }
 
   var name = "dir-" + line;
-  console.log(name);
   bus = line;
   document.getElementById(name).style.display = "inline-block";
   document.getElementById("dirs").style.opacity = 1;
@@ -348,7 +341,6 @@ function activateFeature(pixel, onEvent, route=null) {
       if (!key.includes("_")) {
         key = key + "_" + bus + "_" + dir;
       }
-      console.log(key);
       showInfo(key, data, util.stopMeta);
     } else {
       hover = features[0];
@@ -395,7 +387,6 @@ function showInfo(key, data, sd=null) {
 
 var timer;
 function resizedw(){
-  console.log('resized');
   graphs.drawHist(histData);
 }
 window.onresize = function() {
