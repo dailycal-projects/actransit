@@ -391,7 +391,7 @@ function showInfo(key, data, sd=null) {
 
   histData = data[key]["hist"];
   var summ = graphs.drawHist(histData);
-  innerHTML = "The busiest time slot was <b>" + util.getTimeSlot(summ[0]) + "-" + util.getTimeSlot(summ[0] + 1) + "</b>, which saw <b>" + summ[1] + "%</b> of delays on this stop or route.";
+  innerHTML = "The busiest time slot was <b>" + util.getTimeSlot(summ[0]) + " to " + util.getTimeSlot(summ[0] + 1) + "</b>, which saw <b>" + summ[1] + "%</b> of delays.";
   document.getElementById("hist-sum").innerHTML = innerHTML;
 }
 

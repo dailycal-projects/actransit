@@ -253,6 +253,7 @@ figure.no-gutters-phone {
   h3 {
     margin-top: 10px;
     font-weight: normal;
+    font-size: 1.2em;
   }
 
   span {
@@ -276,6 +277,21 @@ figure.no-gutters-phone {
   #hide-info:hover {
     background-color: #333;
     color: white;
+  }
+}
+
+svg {
+  text {
+    font-family: $sans;
+    fill: $dark-gray;
+  }
+
+  .tick line {
+    stroke: $dark-gray;
+  }
+
+  path {
+    stroke: $dark-gray;
   }
 }
 
