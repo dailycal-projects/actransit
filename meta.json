@@ -6,20 +6,20 @@
   "dateline": "04/13/17 08:13 PM EDT",
   "share": {
     "fbook": {
-      "card_title": "actransit-delays",
-      "card_description": "UC Berkeley's independent student-run newspaper"
+      "card_title": "Berkeley’s most unpredictable buses",
+      "card_description": "We measured which buses around UC Berkeley arrive later than expected"
     },
     "twitter": {
-      "card_title": "actransit-delays",
-      "share_tweet": "UC Berkeley's independent student-run newspaper"
+      "card_title": "Berkeley’s most unpredictable buses",
+      "share_tweet": "We measured which buses around UC Berkeley arrive later than expected"
     },
     "image": {
       "url": "http://projects.dailycal.org/2017/actransit-delays/images/share.jpg",
       "alt": "<Text>",
       "type": "image/jpeg",
-      "width": "600",
-      "height": "300"
+      "width": "1200",
+      "height": "630"
     },
-    "keywords": "Daily Cal, news"
+    "keywords": "Daily Cal, news, AC Transit, bus, delay"
   }
 }
