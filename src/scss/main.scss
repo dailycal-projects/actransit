@@ -325,10 +325,17 @@ svg {
     margin-right: 5%;
     padding: 6px;
     height: 480px;
+  }
+}
 
+@media (max-width: 960px) {
+  #info {
     #hide-info {
       top: unset;
+      right: unset;
+      left: 0;
       bottom: 0;
+      margin-left: 12px;
       margin-bottom: 12px;
     }
   }
