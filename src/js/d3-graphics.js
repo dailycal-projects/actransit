@@ -74,7 +74,8 @@ exports.drawHist = function (dataset) {
     .range([h, 0]);
   var yAxis = d3.axisLeft()
     .scale(yScale)
-    .tickValues([10, 20, 30])
+    .tickFormat(d => `${d}%`)
+    .tickValues([10,20,30])
     .tickSizeOuter([0])
     .tickSizeInner([0]);
   svg.append("g")
