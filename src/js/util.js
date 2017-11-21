@@ -108,6 +108,20 @@ exports.stopMeta = {
   "50151": "Shattuck Av & Parker St"
 };
 
+var closedStops = {
+  "52": ['50400','58558','55006','57955','53700','55967','52995','59555'],
+  "F": ['51072','50607','58558','55006','57955','53700','55967','52995','59555']
+}
+
+exports.isClosed = function (bus, stopId) {
+  if (closedStops.hasOwnProperty(bus)) {
+    if (closedStops[bus].indexOf(stopId) > -1) {
+      return true;
+    }
+  }
+  return false;
+}
+
 /* UTILITY FUNCTIONS */
 exports.convertHex = function (hex, opacity) {
   var hex = hex.replace('#','');
@@ -139,7 +153,8 @@ exports.sortByDelay = function (list, option='avg') {
 };
 
 exports.getTimeSlot = function (index) {
-  var hour = Math.floor(index / 2) + 5;
+  var hour = (Math.floor(index / 2) + 5) % 12;
+  if (hour === 0) hour = 12
   var ampm = "AM";
   if (hour >= 12 || hour <= 24) {
     ampm = "PM";
@@ -148,7 +163,7 @@ exports.getTimeSlot = function (index) {
   if (index % 2 === 1) {
     min = ":30"
   }
-  return hour % 12 + min + ampm;
+  return hour + min + ampm;
 };
 
 exports.aggregateDelays = function (list) {

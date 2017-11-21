@@ -66,28 +66,13 @@ for (var i = 0; i < keys.length; i++) {
     continue;
   }
 }
-// Draw bubble map of delays by stop
-// console.log('stops by % delayed (by >= 5 min)');
-// util.sortByDelay(stopIds, 'otp');
-// for (var i = 0; i < stopIds.length; i++) {
-//   var intersect = util.stopMeta[stopIds[i].id];
-//   console.log(intersect +' ('+stopIds[i].id + '): ' + stopIds[i].late / stopIds[i].length);
-// }
-// console.log('stops by avg delay');
-// util.sortByDelay(stopIds);
-// for (var i = 0; i < stopIds.length; i++) {
-//   var intersect = util.stopMeta[stopIds[i].id];
-//   console.log(intersect +' ('+stopIds[i].id + '): ' + stopIds[i].late / stopIds[i].length);
-// }
-// drawDelayedStops(stopIds, "stops");
-// Draw arrival graphs for selected routes
+
 util.sortByDelay(routeIds);
 // graphs.drawDelays("#methodology", [20, 32], true);
 for (var i = 0; i < selectRoutes.length; i++) {
   var selectBus = selectRoutes[i].split("-")[0];
   var selectDir = selectRoutes[i].split("-")[1];
   var r = data[selectBus + "_" + util.routeMeta[selectBus][selectDir]];
-  console.log(selectBus + "_" + util.routeMeta[selectBus][selectDir]);
   graphs.drawDelays("#arrivals-"+selectRoutes[i], r.sample, 'regular');
   var tmp = 0;
   for (var j = 0; j < r.sample.length; j++) {
@@ -100,9 +85,6 @@ for (var i = 0; i < selectRoutes.length; i++) {
 document.getElementById('hide-info').addEventListener('click', function() {
   hideInfo();
 });
-// drawDelayedRoutes(routes.slice(0, 21));
-// var copy = util.aggregateDelays(stopIds);
-// graphs.drawHist(copy, 'busiest-hist');
 
 // console.log(Object.keys(util.stopMeta).length);
 
@@ -170,43 +152,15 @@ for (var i = 0; i < routeKeys.length; i++) {
 }
 
 /**
- * function applies greyscale to every pixel in canvas
- * source: https://medium.com/@xavierpenya/openlayers-3-osm-map-in-grayscale-5ced3a3ed942
- */
-function greyscale(context) {
-  var canvas = context.canvas;
-  var width = canvas.width;
-  var height = canvas.height;
-  var imageData = context.getImageData(0, 0, width, height);
-  var data = imageData.data;
-  for (i=0; i<data.length; i += 4) {
-    var r = data[i];
-    var g = data[i + 1];
-    var b = data[i + 2];
-    // CIE luminance for the RGB
-    var v = 0.2126 * r + 0.7152 * g + 0.0722 * b;
-    // Show white color instead of black color while loading new tiles:
-    if (v === 0.0) v=255.0;
-    data[i+0] = v; // Red
-    data[i+1] = v; // Green
-    data[i+2] = v; // Blue
-    data[i+3] = 255; // Alpha
-  }
-  context.putImageData(imageData,0,0);
-}
-
-/**
  * OPENLAYERS MAP SETTINGS. Generate map tiles in RASTER,
  * place bus routes (in MultiLineString) and stops (in Point)
  * on the map based on their bus route (and coinciding color).
  */
 
 var raster = new ol_layer_Tile({
-  source: new ol_source_OSM(),
-});
-// apply greyscale on raster tiles
-raster.on('postcompose', function(event) {
- greyscale(event.context);
+  source: new ol_source_OSM({
+    "url": "http://{a-c}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png"
+  }),
 });
 
 var style = {};
@@ -269,7 +223,6 @@ var view = new ol_View({
 var map = new ol_Map({
   target: 'map',
   interactions: ol_interaction.defaults({mouseWheelZoom:false}),
-  // interactions: [],
   layers: Array(raster).concat(vectorLayers),
   view: view
 });
@@ -371,28 +324,34 @@ function showInfo(key, data, sd=null) {
   document.getElementById("direction").innerHTML = dir;
   if (marker.length === 3) {
     document.getElementById("stopId").style.display = "block";
-    // document.getElementById("stopId").innerHTML = "Stop ID: " + marker[0];
     document.getElementById("stopName").innerHTML = sd[marker[0]];
   } else {
     document.getElementById("stopId").style.display = "none";
     document.getElementById("stopName").innerHTML = "Route Information";
   }
-  // var innerHTML = "Average delay: <span>" + util.convertTime(data[key]["mean"]) + "</span>";
-  // if (data[key]["mean"] <= 0) {
-  //   innerHTML = "Average delay: <span>Negligible</span>";
-  // }
-  // document.getElementById("mean").innerHTML = innerHTML;
-  // innerHTML = "Median Delay: <span>" + util.convertTime(data[key]["median"]) + "</span>";
-  // document.getElementById("median").innerHTML = innerHTML;
-  var innerHTML = "At least 5 minutes delay: <span>" + Math.floor(data[key]["late"] / data[key]["length"] * 100) + "%</span>";
-  document.getElementById("late").innerHTML = innerHTML;
-  // innerHTML = "At least 10 minutes delay: <span>" + Math.floor(data[key]["vlate"] / data[key]["length"] * 100) + "%</span>";
-  // document.getElementById("vlate").innerHTML = innerHTML;
+  // console.log(key, data.hasOwnProperty(key), util.isClosed(bus, marker[0]));
+  if (key[0] === "_") {
+    document.getElementById("error").innerHTML = "This stop does not report predictions.";
+    document.getElementById("error").style = "color: black";
+    document.getElementById("late").innerHTML = "";
+    document.getElementById("hist-sum").innerHTML = "";
+    d3.select("#info svg").remove();
+  } else if (!data.hasOwnProperty(key) || util.isClosed(bus, marker[0])) {
+    document.getElementById("error").innerHTML = "Because of stop closure, this stop does not report predictions."
+    document.getElementById("error").style = "color: red";
+    document.getElementById("late").innerHTML = "";
+    document.getElementById("hist-sum").innerHTML = "";
+    d3.select("#info svg").remove();
+  } else {
+    document.getElementById("error").innerHTML = "";
+    var innerHTML = "At least 5 minutes delay: <span>" + Math.floor(data[key]["late"] / data[key]["length"] * 100) + "%</span>";
+    document.getElementById("late").innerHTML = innerHTML;
 
-  histData = data[key]["hist"];
-  var summ = graphs.drawHist(histData);
-  innerHTML = "The busiest time slot was <b>" + util.getTimeSlot(summ[0]) + " to " + util.getTimeSlot(summ[0] + 1) + "</b>, which saw <b>" + summ[1] + "%</b> of delays.";
-  document.getElementById("hist-sum").innerHTML = innerHTML;
+    histData = data[key]["hist"];
+    var summ = graphs.drawHist(histData);
+    innerHTML = "The busiest time slot was <b>" + util.getTimeSlot(summ[0]) + " to " + util.getTimeSlot(summ[0] + 1) + "</b>, which saw <b>" + summ[1] + "%</b> of delays.";
+    document.getElementById("hist-sum").innerHTML = innerHTML;
+  }
 }
 
 var timer;
@@ -417,59 +376,3 @@ map.on('pointermove', function(evt) {
 map.on('click', function(evt) {
   activateFeature(evt.pixel, 'click');
 });
-
-// function drawDelayedStops(sd) {
-//   var bubbleLayers = [];
-//   var bubbleStyle = {};
-//   // Assumes that the stopIds are ordered by greatest delay
-//   for (var i = 0; i < sd.length; i++) {
-//     if (sd[i].mean > 0) {
-//       var scaledRadius = Math.sqrt(sd[i].mean / sd[0].mean) * 30;
-//       bubbleStyle[sd[i].id] = new ol_style_Style({
-//         image: new ol_style_Circle({
-//           fill: new ol_style_Fill({
-//             color: util.convertHex("#FFA500", 80)
-//           }),
-//           radius: scaledRadius,
-//           stroke: new ol_style_Stroke({
-//             color: [0, 0, 0, 0.8],
-//             width: 0.5
-//           })
-//         })
-//       });
-//       createBubble(sd[i].id);
-//     }
-//   }
-//
-//   /* To ensure name closure, pass the route and
-//      its info as parameters into this function. */
-//   function createBubble(sid) {
-//     var gpxUrl = '../data/stops/' + sid + '.gpx';
-//     var bubble = new ol_layer_Vector({
-//       source: new ol_source_Vector({
-//         url: gpxUrl,
-//         format: new ol_format_GPX()
-//       }),
-//       style: bubbleStyle[sid],
-//       opacity: 1,
-//       visible: true
-//     });
-//     bubbleLayers.push(bubble);
-//   }
-//
-//   var bubbleView = new ol_View({
-//     center: ol_proj.fromLonLat([-122.2582, 37.8688]),
-//     maxZoom: 15,
-//     minZoom: 15,
-//     zoom: 15,
-//     extent: transform([-122.271856, 37.860317, -122.247710, 37.877256]),
-//   });
-//
-//   var bubbleMap = new ol_Map({
-//     target: 'bubble-map',
-//     controls: [],
-//     interactions: [],
-//     layers: Array(raster).concat(bubbleLayers),
-//     view: bubbleView
-//   });
-// }

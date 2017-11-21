@@ -105,9 +105,8 @@ figure.no-gutters-phone {
   border-color: #333;
   border-style: solid;
   color: #fff;
-  padding-left: 8px;
-  padding-right: 8px;
-  margin: 0px 2px 0px 2px;
+  padding: 0px 8px;
+  margin: 0px 2px;
   font-size: 18px;
   font-weight: normal;
   font-family: "Lato", sans-serif;
@@ -123,9 +122,8 @@ figure.no-gutters-phone {
   border-style: solid;
   border-radius: 16px;
   background-color: #333;
-  padding-left: 8px;
-  padding-right: 8px;
-  margin: 0px 2px 0px 2px;
+  padding: 0px 12px;
+  margin: 0px 2px;
   font-size: 18px;
   font-weight: normal;
   display: inline-block;
@@ -151,8 +149,7 @@ figure.no-gutters-phone {
     border-color: #333;
     border-style: solid;
     color: #fff;
-    padding-left: 8px;
-    padding-right: 8px;
+    padding: 0px 8px;
     margin: 3px;
     font-size: 24px;
     font-family: "Lato", sans-serif;
@@ -264,9 +261,9 @@ figure.no-gutters-phone {
     cursor: pointer;
     text-decoration: none;
     position: absolute;
-    bottom: 0;
+    top: 0;
     right: 0;
-    margin-bottom: 12px;
+    margin-top: 32px;
     margin-right: 32px;
     padding: 2px 10px;
     border-radius: 20px;
@@ -328,6 +325,12 @@ svg {
     margin-right: 5%;
     padding: 6px;
     height: 480px;
+
+    #hide-info {
+      top: unset;
+      bottom: 0;
+      margin-bottom: 12px;
+    }
   }
 }
 
@@ -337,10 +340,6 @@ svg {
 
 #stopName {
   margin: 0 0 4px 0;
-}
-
-#bubble-map {
-  margin-bottom: 32px;
 }
 
 #hist-sum {

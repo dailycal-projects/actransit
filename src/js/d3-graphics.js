@@ -50,16 +50,16 @@ exports.drawHist = function (dataset) {
       return margin.left + i * (w / dataset.length);  //Bar width of 20 plus 1 for padding
     })
     .attr("y", function(d) {
-      return margin.top + h - Math.floor(d / max * h);  //Height minus data value
+      return margin.top + h - Math.floor(d / (total * 0.3) * h);  //Height minus data value
     })
     .attr("width", w / dataset.length - barPadding)
     .attr("height", function(d, i) {
       if (d === max) {
         maxi = i;
       }
-      return Math.floor(d / max * h);
+      return Math.floor(d / (total * 0.3) * h);
     })
-    .attr("fill", "#F38146");
+    .attr("fill", "#DF5660");
   tickRange.push(w + margin.left);
   var xScale = d3.scaleOrdinal()
     .domain(times)
@@ -70,12 +70,11 @@ exports.drawHist = function (dataset) {
     .attr("transform", "translate(0," + (margin.top + h) + ")")
     .call(xAxis);
   var yScale = d3.scaleLinear()
-    .domain([0, 100])
+    .domain([0, 30])
     .range([h, 0]);
   var yAxis = d3.axisLeft()
     .scale(yScale)
-    .tickValues([100])
-    .tickFormat(Math.floor(max / total * 100) + "%")
+    .tickValues([10, 20, 30])
     .tickSizeOuter([0])
     .tickSizeInner([0]);
   svg.append("g")
