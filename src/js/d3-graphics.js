@@ -1,8 +1,8 @@
 const d3 = require('d3');
 
-var times = ['5am','6am','7am','8am','9am','10am','11am','12pm',
-             '1pm','2pm','3pm','4pm','5pm','6pm','7pm',
-             '8pm','9pm','10pm','11pm','12am'];
+var times = ['5 a.m.','6 a.m.','7 a.m.','8 a.m.','9 a.m.','10 a.m.','11 a.m.','12 p.m.',
+             '1 p.m.','2 p.m.','3 p.m.','4 p.m.','5 p.m.','6 p.m.','7 p.m.',
+             '8 p.m.','9 p.m.','10 p.m.','11 p.m.','12 a.m.'];
 /*
  * D3-utilizing function. Draw the histogram of delays per
  * time slot based on the DATASET. OPTION tells us whether
@@ -84,10 +84,19 @@ exports.drawHist = function (dataset) {
     .call(yAxis);
 
   var hours = document.querySelectorAll('.time-axis text');
-  for (var i = 0; i < hours.length; i++) {
-    var h = hours[i].innerHTML;
-    if (h.slice(0, h.length - 2) % 2 === 0) {
-      hours[i].style = 'fill: none';
+  if (window.innerWidth >= 400) {
+    for (var i = 0; i < hours.length; i++) {
+      var h = hours[i].innerHTML;
+      if (h.slice(0, h.length - 5) % 2 === 0) {
+        hours[i].style = 'fill: none';
+      }
+    }
+  } else {
+    for (var i = 0; i < hours.length; i++) {
+      var h = hours[i].innerHTML;
+      if (h.slice(0, h.length - 5) % 3 !== 2) {
+        hours[i].style = 'fill: none';
+      }
     }
   }
   return [maxi, Math.floor(max / total * 100)];

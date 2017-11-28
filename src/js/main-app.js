@@ -215,7 +215,7 @@ for (var i = 0; i < routeKeys.length; i++) {
 var view = new ol_View({
   center: ol_proj.fromLonLat([-122.2582, 37.8688]),
   maxZoom: 18,
-  minZoom: 16,
+  minZoom: 15,
   zoom: 16,
   extent: transform([-122.271856, 37.860317, -122.247710, 37.877256]),
 });
@@ -322,12 +322,15 @@ function showInfo(key, data, sd=null) {
   document.getElementById("route").innerHTML = bus;
   document.getElementById("route").className = "badge-" + bus;
   document.getElementById("direction").innerHTML = dir;
+  var stopOrRoute;
   if (marker.length === 3) {
     document.getElementById("stopId").style.display = "block";
     document.getElementById("stopName").innerHTML = sd[marker[0]];
+    stopOrRoute = "stop";
   } else {
     document.getElementById("stopId").style.display = "none";
     document.getElementById("stopName").innerHTML = "Route Information";
+    stopOrRoute = "route";
   }
   // console.log(key, data.hasOwnProperty(key), util.isClosed(bus, marker[0]));
   if (key[0] === "_") {
@@ -337,19 +340,19 @@ function showInfo(key, data, sd=null) {
     document.getElementById("hist-sum").innerHTML = "";
     d3.select("#info svg").remove();
   } else if (!data.hasOwnProperty(key) || util.isClosed(bus, marker[0])) {
-    document.getElementById("error").innerHTML = "Because of stop closure, this stop does not report predictions."
+    document.getElementById("error").innerHTML = "Due to construction activity, this stop is closed and does not report predictions."
     document.getElementById("error").style = "color: red";
     document.getElementById("late").innerHTML = "";
     document.getElementById("hist-sum").innerHTML = "";
     d3.select("#info svg").remove();
   } else {
     document.getElementById("error").innerHTML = "";
-    var innerHTML = "At least 5 minutes delay: <span>" + Math.floor(data[key]["late"] / data[key]["length"] * 100) + "%</span>";
+    var innerHTML = "Frequency of delays: <span>" + Math.floor(data[key]["late"] / data[key]["length"] * 100) + "%</span>";
     document.getElementById("late").innerHTML = innerHTML;
 
     histData = data[key]["hist"];
     var summ = graphs.drawHist(histData);
-    innerHTML = "The busiest time slot was <b>" + util.getTimeSlot(summ[0]) + " to " + util.getTimeSlot(summ[0] + 1) + "</b>, which saw <b>" + summ[1] + "%</b> of delays.";
+    innerHTML = "This "+stopOrRoute+" experienced the most delays between <b>" + util.getTimeSlot(summ[0]) + " and " + util.getTimeSlot(summ[0] + 1) + "</b> The chart below shows how delays vary throughout the day.";
     document.getElementById("hist-sum").innerHTML = innerHTML;
   }
 }
