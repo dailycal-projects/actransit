@@ -119,6 +119,8 @@ function toggleDir(direction, index, proj) {
   vectorLayers[index].setVisible(true);
 
   dir = direction;
+  if (dir === 'UC Campus') dir = 'U.c. Campus';
+  if (dir === 'UC Village') dir = 'U.c. Village';
   showInfo(bus + "_" + dir, data);
   view.animate({
     center: proj,
