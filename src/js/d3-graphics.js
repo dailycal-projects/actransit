@@ -83,21 +83,21 @@ exports.drawHist = function (dataset) {
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
     .call(yAxis);
 
-  var hours = document.querySelectorAll('.time-axis text');
+  var hours = $('.time-axis text');
   if (window.innerWidth >= 400) {
-    for (var i = 0; i < hours.length; i++) {
-      var h = hours[i].innerHTML;
+    hours.each(function() {
+      const h = $(this).html();
       if (h.slice(0, h.length - 5) % 2 === 0) {
-        hours[i].style = 'fill: none';
+        $(this).css('fill', 'none');
       }
-    }
+    });
   } else {
-    for (var i = 0; i < hours.length; i++) {
-      var h = hours[i].innerHTML;
+    hours.each(function() {
+      const h = $(this).html();
       if (h.slice(0, h.length - 5) % 3 !== 2) {
-        hours[i].style = 'fill: none';
+        $(this).css('fill', 'none');
       }
-    }
+    });
   }
   return [maxi, Math.floor(max / total * 100)];
 }
