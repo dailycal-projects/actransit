@@ -379,3 +379,9 @@ map.on('pointermove', function(evt) {
 map.on('click', function(evt) {
   activateFeature(evt.pixel, 'click');
 });
+
+$('.jump-down').on('click', function() {
+  const scrollTop = $('#lines').offset().top;
+  console.log(scrollTop);
+  $('html,body').animate({ scrollTop: scrollTop }, 500);
+});
