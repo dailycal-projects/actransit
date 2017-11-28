@@ -352,7 +352,7 @@ function showInfo(key, data, sd=null) {
 
     histData = data[key]["hist"];
     var summ = graphs.drawHist(histData);
-    innerHTML = "This "+stopOrRoute+" experienced the most delays between <b>" + util.getTimeSlot(summ[0]) + " and " + util.getTimeSlot(summ[0] + 1) + "</b> The chart below shows how delays vary throughout the day.";
+    innerHTML = "This "+stopOrRoute+" experienced the most delays between <b>" + util.getTimeSlot(summ[0]) + " and " + util.getTimeSlot(summ[0] + 1) + "</b>The chart below shows how delays vary throughout the day.";
     document.getElementById("hist-sum").innerHTML = innerHTML;
   }
 }
