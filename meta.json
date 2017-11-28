@@ -11,12 +11,12 @@
     },
     "twitter": {
       "card_title": "Berkeley’s most unpredictable buses",
-      "share_tweet": "We measured which buses around UC Berkeley arrive later than expected",
+      "share_tweet": "Here's which buses around UC Berkeley are the most unpredictable",
       "card_description": "We measured which buses around UC Berkeley arrive later than expected"
     },
     "image": {
       "url": "http://stage-projects.dailycal.org/2017/bus-delays/images/share.jpg",
-      "alt": "Here's which buses around UC Berkeley are the most unpredictable",
+      "alt": "We measured which buses around UC Berkeley arrive later than expected",
       "type": "image/jpeg",
       "width": "1200",
       "height": "630"
