@@ -15,12 +15,12 @@
       "card_description": "We measured which buses around UC Berkeley arrive later than expected"
     },
     "image": {
-      "url": "http://projects.dailycal.org/2017/bus-delays/images/share.jpg",
-      "alt": "<Text>",
+      "url": "http://stage-projects.dailycal.org/2017/bus-delays/images/share.jpg",
+      "alt": "Here's which buses around UC Berkeley are the most unpredictable",
       "type": "image/jpeg",
       "width": "1200",
       "height": "630"
     },
-    "keywords": "Daily Cal, news, AC Transit, bus, delay"
+    "keywords": "Daily Cal, news, AC Transit, bus, delay, prediction, NextBus"
   }
 }
