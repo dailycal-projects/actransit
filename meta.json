@@ -7,12 +7,12 @@
   "share": {
     "fbook": {
       "card_title": "Berkeley’s most unpredictable buses",
-      "card_description": "We measured which buses around UC Berkeley arrive later than expected"
+      "card_description": "We tracked more than 45,000 bus trips near campus to figure out which buses arrive later than expected"
     },
     "twitter": {
       "card_title": "Berkeley’s most unpredictable buses",
       "share_tweet": "Here's which buses around UC Berkeley are the most unpredictable",
-      "card_description": "We measured which buses around UC Berkeley arrive later than expected"
+      "card_description": "We tracked more than 45,000 bus trips near campus to figure out which buses arrive later than expected"
     },
     "image": {
       "url": "http://stage-projects.dailycal.org/2017/bus-delays/images/share.jpg",
