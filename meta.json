@@ -1,9 +1,9 @@
 {
   "id": "51502724801",
-  "publishPath": "2017/actransit-delays/",
-  "url": "http://projects.dailycal.org/2017/actransit-delays/",
-  "timestamp": "2017-04-13T08:13-0400",
-  "dateline": "04/13/17 08:13 PM EDT",
+  "publishPath": "2017/bus-delays/",
+  "url": "http://projects.dailycal.org/2017/bus-delays/",
+  "timestamp": "2017-11-28T08:00-0800",
+  "dateline": "11/28/17 08:00 AM PDT",
   "share": {
     "fbook": {
       "card_title": "Berkeley’s most unpredictable buses",
@@ -11,10 +11,11 @@
     },
     "twitter": {
       "card_title": "Berkeley’s most unpredictable buses",
-      "share_tweet": "We measured which buses around UC Berkeley arrive later than expected"
+      "share_tweet": "We measured which buses around UC Berkeley arrive later than expected",
+      "card_description": "We measured which buses around UC Berkeley arrive later than expected"
     },
     "image": {
-      "url": "http://projects.dailycal.org/2017/actransit-delays/images/share.jpg",
+      "url": "http://projects.dailycal.org/2017/bus-delays/images/share.jpg",
       "alt": "<Text>",
       "type": "image/jpeg",
       "width": "1200",
