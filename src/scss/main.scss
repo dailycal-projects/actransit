@@ -243,14 +243,15 @@ figure.no-gutters-phone {
   padding: 32px;
   z-index: 1;
 
-  h2 {
+  h2#stopName {
     text-align: left;
+    font-size: 1.2em;
   }
 
   h3 {
     margin-top: 10px;
     font-weight: normal;
-    font-size: 1.2em;
+    font-size: 1.0em;
   }
 
   span {
@@ -267,8 +268,12 @@ figure.no-gutters-phone {
     margin-right: 32px;
     padding: 2px 10px;
     border-radius: 20px;
-    border: solid black 1px;
-    color: black;
+    border: solid grey 1px;
+    color: grey;
+    font-family: $sans;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 14px;
   }
 
   #hide-info:hover {
