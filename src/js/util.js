@@ -45,7 +45,7 @@ exports.stopMeta = {
   "55935": "Shattuck Ave. & Parker St.",
   "54963": "Bancroft Way & Telegraph Ave.",
   "54230": "Oxford St. & Virginia St.",
-  "53700": "Gayley Rd. & Greek Theater",
+  "53700": "Gayley Rd. & Greek Theatre",
   "58889": "Shattuck Ave. & University Ave.",
   "58558": "Hearst Ave. & Arch St.",
   "55138": "Dana St. & Haste St.",
