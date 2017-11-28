@@ -26,7 +26,7 @@ exports.drawHist = function (dataset) {
   };
   var width = window.innerWidth * 0.35;
   var height = 200;
-  if (window.innerWidth <= 600) {
+  if (window.innerWidth <= 768) {
     width = window.innerWidth * 0.85;
     height = 120;
   }

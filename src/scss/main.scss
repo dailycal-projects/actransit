@@ -127,7 +127,7 @@ figure.no-gutters-phone {
   font-size: 18px;
   font-weight: normal;
   display: inline-block;
-  font-family: monospace;
+  font-family: "Courier", monospace;
   text-transform: uppercase;
   color: #e6d063;
   line-height: normal;
@@ -199,7 +199,7 @@ figure.no-gutters-phone {
     opacity: 0.3;
     background-color: #333;
     color: #e6d063;
-    font-family: monospace;
+    font-family: "Courier", monospace;
     text-transform: uppercase;
   }
 
@@ -307,7 +307,7 @@ svg {
     left: 0;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   #map-info {
     margin-top: 6px;
     height: 480px;
