@@ -133,6 +133,10 @@ figure.no-gutters-phone {
   line-height: normal;
 }
 
+#route, #direction {
+  display: none;
+}
+
 #lines {
   width: 80%;
   display: block;
@@ -310,11 +314,11 @@ svg {
 @media (max-width: 768px) {
   #map-info {
     margin-top: 6px;
-    height: 480px;
+    height: 420px;
   }
 
   #map {
-    height: 480px;
+    height: 420px;
     width: 90%;
     margin-left: auto;
     margin-right: auto;
@@ -324,7 +328,7 @@ svg {
     width: 90%;
     margin-right: 5%;
     padding: 6px;
-    height: 480px;
+    height: 420px;
   }
 }
 

@@ -334,23 +334,23 @@ function showInfo(key, data, sd=null) {
   }
   // console.log(key, data.hasOwnProperty(key), util.isClosed(bus, marker[0]));
   if (key[0] === "_") {
-    document.getElementById("late").innerHTML = "This stop does not report predictions."
-    document.getElementById("late").style = "color: black";
-    document.getElementById("hist-sum").innerHTML = "";
+    $("#late").html("This stop does not report predictions.");
+    $("#late").css("color", "black");
+    $("#hist-sum").html("");
     d3.select("#info svg").remove();
   } else if (!data.hasOwnProperty(key) || util.isClosed(bus, marker[0])) {
-    document.getElementById("late").innerHTML = "Due to construction activity, this stop is closed and does not report predictions."
-    document.getElementById("late").style = "color: red";
-    document.getElementById("hist-sum").innerHTML = "";
+    $("#late").html("Due to construction activity, this stop is closed and does not report predictions.");
+    $("#late").css("color", "red");
+    $("#hist-sum").html("");
     d3.select("#info svg").remove();
   } else {
     var innerHTML = "Frequency of delays: <span>" + Math.floor(data[key]["late"] / data[key]["length"] * 100) + "%</span>";
-    document.getElementById("late").innerHTML = innerHTML;
-    document.getElementById("late").style = "color: black";
+    $("#late").html(innerHTML);
+    $("#late").css("color", "black");
     histData = data[key]["hist"];
     var summ = graphs.drawHist(histData);
     innerHTML = "This "+stopOrRoute+" experienced the most delays between <b>" + util.getTimeSlot(summ[0]) + " and " + util.getTimeSlot(summ[0] + 1) + "</b> The chart below shows how delays vary throughout the day.";
-    document.getElementById("hist-sum").innerHTML = innerHTML;
+    $("#hist-sum").html(innerHTML);
   }
 }
 
