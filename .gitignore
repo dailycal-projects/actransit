@@ -68,3 +68,5 @@ typings/
 
 .DS_Store
 update/
+datafunc/predictions/
+
