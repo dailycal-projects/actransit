@@ -67,3 +67,4 @@ typings/
 .env
 
 .DS_Store
+update/
